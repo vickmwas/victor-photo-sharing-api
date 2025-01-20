@@ -6,7 +6,6 @@ import { getTypeOrmConfig } from 'typeorm/typeorm.config';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { PhotosModule } from './photos/photos.module';
-import { FollowersModule } from './followers/followers.module';
 import { LikesModule } from './likes/likes.module';
 import { CommentsModule } from './comments/comments.module';
 import { HashtagsModule } from './hashtags/hashtags.module';
@@ -27,7 +26,6 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
     AuthModule,
     UsersModule,
     PhotosModule,
-    FollowersModule,
     LikesModule,
     CommentsModule,
     HashtagsModule, // Load TypeORM configuration
