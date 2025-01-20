@@ -46,7 +46,7 @@ export class UsersController {
     return this.usersService.findUserProfile(id);
   }
 
-  @Post(':id/follow')
+  @Patch(':id/follow')
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard)
   @ApiOperation({ summary: 'Follow a user' })
@@ -61,7 +61,7 @@ export class UsersController {
     return { message: 'User followed successfully' };
   }
 
-  @Post(':id/unfollow')
+  @Patch(':id/unfollow')
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard)
   @ApiOperation({ summary: 'Unfollow a user' })
