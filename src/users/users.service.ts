@@ -41,6 +41,15 @@ export class UsersService {
       throw new NotFoundException(`User with ID ${userId} not found`);
     }
 
+    const followerCount = user.followers.length;
+    const followingCount = user.following.length;
+
+    return {
+      ...user,
+      followerCount,
+      followingCount,
+    };
+
     return user;
   }
 

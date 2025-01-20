@@ -64,4 +64,8 @@ export class User {
 
   @OneToMany(() => Like, (like) => like.user)
   likes: Like[];
+
+  followerCount?: number;
+
+  followingCount?: number;
 }
