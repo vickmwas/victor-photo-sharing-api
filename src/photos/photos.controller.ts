@@ -10,6 +10,7 @@ import {
   UploadedFile,
   UseGuards,
   Req,
+  Query,
 } from '@nestjs/common';
 import { PhotosService } from './photos.service';
 import { CreatePhotoDto, UploadPhotoDto } from './dto/create-photo.dto';
@@ -57,6 +58,31 @@ export class PhotosController {
     const url = await this.photosService.uploadFile(file);
 
     return url;
+  }
+
+  @Get('feed')
+  @UseGuards(JwtAuthGuard)
+  @ApiOperation({
+    summary:
+      "Fetch the user's feed, showing photos uploaded by themselves and users they follow",
+  })
+  @ApiResponse({ status: 200, description: 'User feed' })
+  async getUserFeed(
+    @Req() req: RequestWithUser,
+    @Query('page') page: number = 1,
+    @Query('limit') limit: number = 5,
+  ) {
+    const userId = req.user.sub; // Extracted from the token
+    const { photos, currentPage, totalPages, totalItems } =
+      await this.photosService.getUserFeed(userId, page, limit);
+    const perPage = limit;
+    return {
+      photos,
+      currentPage,
+      totalPages,
+      totalItems,
+      perPage,
+    };
   }
 
   @Post()
