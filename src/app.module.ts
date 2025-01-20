@@ -16,10 +16,12 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
+      envFilePath: '.env',
     }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
-      useFactory: async (configService: ConfigService) => getTypeOrmConfig(configService),
+      useFactory: async (configService: ConfigService) =>
+        getTypeOrmConfig(configService),
       inject: [ConfigService],
     }),
     AuthModule,

@@ -14,13 +14,22 @@ export class Photo {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @ManyToOne(() => User, (user) => user.id)
-  userId: number;
+  @ManyToOne(() => User, (user) => user.photos)
+  user: User;
 
   @Column()
   photoUrl: string;
 
-  @Column()
+  @Column({ nullable: true })
+  filename: string;
+
+  @Column({ nullable: true })
+  size: number;
+
+  @Column({ nullable: true })
+  mimeType: string;
+
+  @Column({ nullable: true })
   caption: string;
 
   @CreateDateColumn()

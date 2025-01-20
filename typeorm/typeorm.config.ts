@@ -12,5 +12,6 @@ export const getTypeOrmConfig = (
   database: configService.get<string>('DATABASE_NAME'),
   entities: [__dirname + '/../**/*.entity{.ts,.js}'],
   synchronize: true, // Set to false in production
-  logging: false,
+  // dropSchema: true,
+  logging: true,
 });
