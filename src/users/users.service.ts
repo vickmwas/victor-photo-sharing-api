@@ -31,6 +31,28 @@ export class UsersService {
     return this.userRepository.findOne({ where: { id } });
   }
 
+  async findUserProfile(userId: string): Promise<User> {
+    const user = await this.userRepository.findOne({
+      where: { id: userId },
+      relations: ['photos', 'followers', 'following'],
+    });
+
+    if (!user) {
+      throw new NotFoundException(`User with ID ${userId} not found`);
+    }
+
+    const followerCount = user.followers.length;
+    const followingCount = user.following.length;
+
+    return {
+      ...user,
+      followerCount,
+      followingCount,
+    };
+
+    return user;
+  }
+
   async findByUsername(username: string): Promise<User> {
     const user = await this.userRepository.findOne({
       where: [
@@ -65,5 +87,63 @@ export class UsersService {
 
   async softDelete(id: string): Promise<void> {
     await this.userRepository.softDelete(id);
+  }
+
+  async followUser(userId: string, targetUserId: string): Promise<void> {
+    const user = await this.userRepository.findOne({
+      where: { id: userId },
+      relations: ['following'],
+    });
+    const targetUser = await this.userRepository.findOne({
+      where: { id: targetUserId },
+      relations: ['followers'],
+    });
+
+    if (!user || !targetUser) {
+      throw new NotFoundException('User not found');
+    }
+
+    user.following.push(targetUser);
+    targetUser.followers.push(user);
+
+    await this.userRepository.save(user);
+    await this.userRepository.save(targetUser);
+  }
+
+  async unfollowUser(userId: string, targetUserId: string): Promise<void> {
+    const user = await this.userRepository.findOne({
+      where: { id: userId },
+      relations: ['following'],
+    });
+    const targetUser = await this.userRepository.findOne({
+      where: { id: targetUserId },
+      relations: ['followers'],
+    });
+
+    if (!user || !targetUser) {
+      throw new NotFoundException('User not found');
+    }
+
+    user.following = user.following.filter((u) => u.id !== targetUserId);
+    targetUser.followers = targetUser.followers.filter((u) => u.id !== userId);
+
+    await this.userRepository.save(user);
+    await this.userRepository.save(targetUser);
+  }
+
+  async updateProfile(
+    userId: string,
+    updateUserDto: UpdateUserDto,
+  ): Promise<User> {
+    const user = await this.userRepository.preload({
+      id: userId,
+      ...updateUserDto,
+    });
+
+    if (!user) {
+      throw new NotFoundException(`User with ID ${userId} not found`);
+    }
+
+    return this.userRepository.save(user);
   }
 }
