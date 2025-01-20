@@ -14,8 +14,8 @@ export class Photo {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @ManyToOne(() => User, (user) => user.id)
-  user: string;
+  @ManyToOne(() => User, (user) => user.photos)
+  user: User;
 
   @Column()
   photoUrl: string;

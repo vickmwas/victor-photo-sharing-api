@@ -60,6 +60,13 @@ export class PhotosController {
   }
 
   @Post()
+  @UseGuards(JwtAuthGuard)
+  @ApiOperation({ summary: 'Create a photo entry' })
+  @ApiResponse({
+    status: 201,
+    description: 'The photo entry has been successfully created.',
+  })
+  @ApiResponse({ status: 400, description: 'Bad Request.' })
   create(@Body() createPhotoDto: CreatePhotoDto, @Req() req: RequestWithUser) {
     console.log('Testing Request');
     console.log(req.user);
@@ -68,22 +75,38 @@ export class PhotosController {
   }
 
   @Get()
-  findAll() {
-    return this.photosService.findAll();
+  @UseGuards(JwtAuthGuard)
+  @ApiOperation({ summary: 'List uploaded photos for the authenticated user' })
+  @ApiResponse({ status: 200, description: 'List of photos' })
+  async findAll(@Req() req: RequestWithUser) {
+    const userId = req.user.sub; // Extracted from the token
+    return this.photosService.findAllByUser(userId);
   }
 
   @Get(':id')
+  @UseGuards(JwtAuthGuard)
+  @ApiOperation({ summary: 'Get a photo by ID' })
+  @ApiResponse({ status: 200, description: 'Photo details' })
+  @ApiResponse({ status: 404, description: 'Photo not found' })
   findOne(@Param('id') id: string) {
-    return this.photosService.findOne(+id);
+    return this.photosService.findOne(id);
   }
 
   @Patch(':id')
+  @UseGuards(JwtAuthGuard)
+  @ApiOperation({ summary: 'Update a photo by ID' })
+  @ApiResponse({ status: 200, description: 'Photo updated successfully' })
+  @ApiResponse({ status: 404, description: 'Photo not found' })
   update(@Param('id') id: string, @Body() updatePhotoDto: UpdatePhotoDto) {
-    return this.photosService.update(+id, updatePhotoDto);
+    return this.photosService.update(id, updatePhotoDto);
   }
 
   @Delete(':id')
+  @UseGuards(JwtAuthGuard)
+  @ApiOperation({ summary: 'Delete a photo by ID' })
+  @ApiResponse({ status: 200, description: 'Photo deleted successfully' })
+  @ApiResponse({ status: 404, description: 'Photo not found' })
   remove(@Param('id') id: string) {
-    return this.photosService.remove(+id);
+    return this.photosService.remove(id);
   }
 }

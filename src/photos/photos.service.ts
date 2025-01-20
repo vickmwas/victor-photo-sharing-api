@@ -66,24 +66,44 @@ export class PhotosService {
 
     const photo = this.photosRepository.create({
       ...createPhotoDto,
-      user: user.id,
+      user,
     });
     return this.photosRepository.save(photo);
   }
 
-  findAll() {
-    return `This action returns all photos`;
+  async findAllByUser(userId: string): Promise<Photo[]> {
+    console.log('Testing Request: UserID');
+    console.log(userId);
+    return this.photosRepository.find({
+      where: { user: { id: userId } },
+      relations: ['user'],
+    });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} photo`;
+  async findOne(id: string): Promise<Photo> {
+    const photo = await this.photosRepository.findOne({ where: { id } });
+    if (!photo) {
+      throw new NotFoundException(`Photo with ID ${id} not found`);
+    }
+    return photo;
   }
 
-  update(id: number, updatePhotoDto: UpdatePhotoDto) {
-    return `This action updates a #${id} photo`;
+  async update(id: string, updatePhotoDto: UpdatePhotoDto): Promise<Photo> {
+    const photo = await this.photosRepository.preload({
+      id,
+      ...updatePhotoDto,
+    });
+    if (!photo) {
+      throw new NotFoundException(`Photo with ID ${id} not found`);
+    }
+    return this.photosRepository.save(photo);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} photo`;
+  async remove(id: string): Promise<void> {
+    const photo = await this.photosRepository.findOne({ where: { id } });
+    if (!photo) {
+      throw new NotFoundException(`Photo with ID ${id} not found`);
+    }
+    await this.photosRepository.softRemove(photo);
   }
 }
