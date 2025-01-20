@@ -7,6 +7,8 @@ import {
   Index,
   PrimaryGeneratedColumn,
   OneToMany,
+  ManyToMany,
+  JoinTable,
 } from 'typeorm';
 import { Exclude } from 'class-transformer';
 import { Photo } from '../../photos/entities/photo.entity';
@@ -49,6 +51,13 @@ export class User {
 
   @OneToMany(() => Photo, (photo) => photo.user)
   photos: Photo[];
+
+  @ManyToMany(() => User, (user) => user.following)
+  @JoinTable()
+  followers: User[];
+
+  @ManyToMany(() => User, (user) => user.followers)
+  following: User[];
 
   //   @OneToMany(() => Comment, (comment) => comment.user)
   //   comments: Comment[];
