@@ -47,11 +47,11 @@ export class User {
   @DeleteDateColumn({ name: 'deleted_at' })
   deletedAt: Date;
 
-//   @OneToMany(() => Photo, (photo) => photo.user)
-//   photos: Photo[];
+  @OneToMany(() => Photo, (photo) => photo.user)
+  photos: Photo[];
 
-//   @OneToMany(() => Comment, (comment) => comment.user)
-//   comments: Comment[];
+  //   @OneToMany(() => Comment, (comment) => comment.user)
+  //   comments: Comment[];
 
   @OneToMany(() => Like, (like) => like.user)
   likes: Like[];

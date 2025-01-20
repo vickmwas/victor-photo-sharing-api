@@ -15,12 +15,21 @@ export class Photo {
   id: string;
 
   @ManyToOne(() => User, (user) => user.id)
-  userId: number;
+  user: string;
 
   @Column()
   photoUrl: string;
 
-  @Column()
+  @Column({ nullable: true })
+  filename: string;
+
+  @Column({ nullable: true })
+  size: number;
+
+  @Column({ nullable: true })
+  mimeType: string;
+
+  @Column({ nullable: true })
   caption: string;
 
   @CreateDateColumn()

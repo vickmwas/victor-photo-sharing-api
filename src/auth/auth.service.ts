@@ -87,5 +87,4 @@ export class AuthService {
   async validatePassword(plainText: string, hashed: string): Promise<boolean> {
     return bcrypt.compare(plainText, hashed);
   }
-
 }

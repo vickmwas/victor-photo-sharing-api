@@ -9,9 +9,16 @@ async function bootstrap() {
 
   app.useGlobalPipes(new ValidationPipe());
 
+  // Enable CORS
+  app.enableCors({
+    origin: true,
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    credentials: true,
+  });
+
   const config = new DocumentBuilder()
     .setTitle('Incourage - Photo Sharing API')
-    .setDescription('The Photo Sharing API description')
+    .setDescription('REST API for the Photo Sharing App')
     .setVersion('1.0')
     .addBearerAuth()
     .build();
