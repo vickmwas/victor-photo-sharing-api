@@ -1,26 +1,69 @@
-import { Injectable } from '@nestjs/common';
-import { CreateCommentDto } from './dto/create-comment.dto';
+import {
+  Injectable,
+  NotFoundException,
+  UnauthorizedException,
+} from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Comment } from './entities/comment.entity';
 import { UpdateCommentDto } from './dto/update-comment.dto';
 
 @Injectable()
 export class CommentsService {
-  create(createCommentDto: CreateCommentDto) {
-    return 'This action adds a new comment';
+  constructor(
+    @InjectRepository(Comment)
+    private commentsRepository: Repository<Comment>,
+  ) {}
+
+  async update(
+    id: string,
+    userId: string,
+    updateCommentDto: UpdateCommentDto,
+  ): Promise<Comment> {
+    const comment = await this.commentsRepository.findOne({
+      where: { id },
+      relations: ['user'],
+    });
+
+    if (!comment) {
+      throw new NotFoundException('Comment not found');
+    }
+
+    if (comment.user.id !== userId) {
+      throw new UnauthorizedException('You can only update your own comments');
+    }
+
+    await this.commentsRepository.update(id, updateCommentDto);
+    return this.commentsRepository.findOne({ where: { id } });
   }
 
-  findAll() {
-    return `This action returns all comments`;
+  async deleteComment(id: string, userId: string): Promise<void> {
+    const comment = await this.commentsRepository.findOne({
+      where: { id },
+      relations: ['user'],
+    });
+
+    if (!comment) {
+      throw new NotFoundException('Comment not found');
+    }
+
+    if (comment.user.id !== userId) {
+      throw new UnauthorizedException('You can only delete your own comments');
+    }
+
+    await this.commentsRepository.softDelete(id);
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} comment`;
-  }
+  async findOneWithReplies(id: string): Promise<Comment> {
+    const comment = await this.commentsRepository.findOne({
+      where: { id },
+      relations: ['user', 'photo'],
+    });
 
-  update(id: number, updateCommentDto: UpdateCommentDto) {
-    return `This action updates a #${id} comment`;
-  }
+    if (!comment) {
+      throw new NotFoundException('Comment not found');
+    }
 
-  remove(id: number) {
-    return `This action removes a #${id} comment`;
+    return comment;
   }
 }

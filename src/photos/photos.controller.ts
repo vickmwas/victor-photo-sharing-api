@@ -25,6 +25,7 @@ import {
 } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { RequestWithUser } from 'src/auth/interfaces/request-with-user.interface';
+import { CreateCommentDto } from 'src/comments/dto/create-comment.dto';
 
 @Controller('photos')
 @UseGuards(JwtAuthGuard)
@@ -134,5 +135,35 @@ export class PhotosController {
   @ApiResponse({ status: 404, description: 'Photo not found' })
   remove(@Param('id') id: string) {
     return this.photosService.remove(id);
+  }
+
+  @Post(':id/like')
+  @UseGuards(JwtAuthGuard)
+  async likePhoto(@Param('id') id: string, @Req() req: RequestWithUser) {
+    await this.photosService.likePhoto(id, req.user.sub);
+    return { message: 'Photo liked successfully' };
+  }
+
+  @Delete(':id/like')
+  @UseGuards(JwtAuthGuard)
+  async unlikePhoto(@Param('id') id: string, @Req() req: RequestWithUser) {
+    await this.photosService.unlikePhoto(id, req.user.sub);
+    return { message: 'Photo unliked successfully' };
+  }
+
+  @Post(':id/comments')
+  @UseGuards(JwtAuthGuard)
+  async addComment(
+    @Param('id') id: string,
+    @Body() createCommentDto: CreateCommentDto,
+    @Req() req: RequestWithUser,
+  ) {
+    return this.photosService.addComment(id, req.user.sub, createCommentDto);
+  }
+
+  @Get(':id/details')
+  @UseGuards(JwtAuthGuard)
+  async getPhotoDetails(@Param('id') id: string) {
+    return this.photosService.getPhotoDetails(id);
   }
 }

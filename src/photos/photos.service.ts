@@ -11,6 +11,9 @@ import { In, Repository } from 'typeorm';
 import { Photo } from './entities/photo.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from 'src/users/entities/user.entity';
+import { Like } from 'src/likes/entities/like.entity';
+import { CreateCommentDto } from 'src/comments/dto/create-comment.dto';
+import { Comment } from 'src/comments/entities/comment.entity';
 
 @Injectable()
 export class PhotosService {
@@ -22,6 +25,12 @@ export class PhotosService {
 
     @InjectRepository(User)
     private usersRepository: Repository<User>,
+
+    @InjectRepository(Like)
+    private likesRepository: Repository<Like>,
+
+    @InjectRepository(Comment)
+    private commentsRepository: Repository<Comment>,
 
     private configService: ConfigService,
   ) {
@@ -72,20 +81,25 @@ export class PhotosService {
   }
 
   async findAllByUser(userId: string): Promise<Photo[]> {
-    console.log('Testing Request: UserID');
-    console.log(userId);
-    return this.photosRepository.find({
+    const photos = await this.photosRepository.find({
       where: { user: { id: userId } },
-      relations: ['user'],
+      relations: ['user', 'likes', 'comments'],
     });
+
+    return this.loadCounts(photos);
   }
 
   async findOne(id: string): Promise<Photo> {
-    const photo = await this.photosRepository.findOne({ where: { id } });
+    const photo = await this.photosRepository.findOne({
+      where: { id },
+      relations: ['user', 'likes', 'comments'],
+    });
+
     if (!photo) {
       throw new NotFoundException(`Photo with ID ${id} not found`);
     }
-    return photo;
+
+    return (await this.loadCounts([photo]))[0];
   }
 
   async update(id: string, updatePhotoDto: UpdatePhotoDto): Promise<Photo> {
@@ -134,20 +148,94 @@ export class PhotosService {
 
     const [photos, totalItems] = await this.photosRepository.findAndCount({
       where: { user: { id: In(followingIds) } },
-      relations: ['user'],
+      relations: ['user', 'likes', 'comments'],
       skip: (page - 1) * limit,
       take: limit,
       order: { createdAt: 'DESC' },
     });
 
+    const photosWithCounts = await this.loadCounts(photos);
+
     const totalPages = Math.ceil(totalItems / limit);
 
     return {
-      photos,
+      photos: photosWithCounts,
       currentPage: page,
       totalPages,
       totalItems,
       perPage: limit,
     };
+  }
+
+  async likePhoto(photoId: string, userId: string): Promise<void> {
+    const existingLike = await this.likesRepository.findOne({
+      where: { photo: { id: photoId }, user: { id: userId } },
+    });
+
+    if (existingLike) {
+      throw new BadRequestException('Photo already liked');
+    }
+
+    const like = this.likesRepository.create({
+      photo: { id: photoId },
+      user: { id: userId },
+    });
+
+    await this.likesRepository.save(like);
+  }
+
+  async unlikePhoto(photoId: string, userId: string): Promise<void> {
+    const like = await this.likesRepository.findOne({
+      where: { photo: { id: photoId }, user: { id: userId } },
+    });
+
+    if (!like) {
+      throw new NotFoundException('Like not found');
+    }
+
+    await this.likesRepository.remove(like);
+  }
+
+  async addComment(
+    photoId: string,
+    userId: string,
+    createCommentDto: CreateCommentDto,
+  ): Promise<Comment> {
+    const comment = this.commentsRepository.create({
+      ...createCommentDto,
+      photo: { id: photoId },
+      user: { id: userId },
+    });
+
+    return this.commentsRepository.save(comment);
+  }
+
+  async getPhotoDetails(photoId: string): Promise<any> {
+    const photo = await this.photosRepository.findOne({
+      where: { id: photoId },
+      relations: ['comments', 'likes'],
+    });
+
+    if (!photo) {
+      throw new NotFoundException('Photo not found');
+    }
+
+    return {
+      ...photo,
+      likesCount: photo.likes.length,
+      commentsCount: photo.comments.length,
+    };
+  }
+
+  private async loadCounts(photos: Photo[]): Promise<Photo[]> {
+    for (const photo of photos) {
+      const [likesCount, commentsCount] = await Promise.all([
+        this.likesRepository.count({ where: { photo: { id: photo.id } } }),
+        this.commentsRepository.count({ where: { photo: { id: photo.id } } }),
+      ]);
+      photo.likeCount = likesCount;
+      photo.commentCount = commentsCount;
+    }
+    return photos;
   }
 }

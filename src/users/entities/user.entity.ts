@@ -59,8 +59,8 @@ export class User {
   @ManyToMany(() => User, (user) => user.followers)
   following: User[];
 
-  //   @OneToMany(() => Comment, (comment) => comment.user)
-  //   comments: Comment[];
+  @OneToMany(() => Comment, (comment) => comment.user)
+  comments: Comment[];
 
   @OneToMany(() => Like, (like) => like.user)
   likes: Like[];

@@ -10,10 +10,10 @@ export class Like {
   @PrimaryColumn()
   userId: number;
 
-  @ManyToOne(() => Photo, (photo) => photo.id)
+  @ManyToOne(() => Photo, (photo) => photo.likes)
   photo: Photo;
 
-  @ManyToOne(() => User, (user) => user.id)
+  @ManyToOne(() => User, (user) => user.likes)
   user: User;
 
   @CreateDateColumn()
