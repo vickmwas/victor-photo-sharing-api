@@ -8,10 +8,13 @@ import {
   DeleteDateColumn,
   OneToMany,
   RelationCount,
+  ManyToMany,
+  JoinTable,
 } from 'typeorm';
 import { User } from '../../users/entities/user.entity';
 import { Like } from 'src/likes/entities/like.entity';
 import { Comment } from 'src/comments/entities/comment.entity';
+import { Hashtag } from 'src/hashtags/entities/hashtag.entity';
 
 @Entity('photos')
 export class Photo {
@@ -50,6 +53,10 @@ export class Photo {
 
   @OneToMany(() => Like, (like) => like.photo)
   likes: Like[];
+
+  @ManyToMany(() => Hashtag, (hashtag) => hashtag.photos)
+  @JoinTable()
+  hashtags: Hashtag[];
 
   likeCount?: number;
   commentCount?: number;
