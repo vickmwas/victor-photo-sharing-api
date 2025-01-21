@@ -6,8 +6,11 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   DeleteDateColumn,
+  OneToMany,
 } from 'typeorm';
 import { User } from '../../users/entities/user.entity';
+import { Like } from 'src/likes/entities/like.entity';
+import { Comment } from 'src/comments/entities/comment.entity';
 
 @Entity('photos')
 export class Photo {
@@ -40,4 +43,10 @@ export class Photo {
 
   @DeleteDateColumn()
   deletedAt: Date;
+
+  @OneToMany(() => Comment, (comment) => comment.photo)
+  comments: Comment[];
+
+  @OneToMany(() => Like, (like) => like.photo)
+  likes: Like[];
 }
