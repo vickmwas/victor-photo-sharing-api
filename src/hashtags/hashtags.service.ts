@@ -1,26 +1,40 @@
 import { Injectable } from '@nestjs/common';
-import { CreateHashtagDto } from './dto/create-hashtag.dto';
-import { UpdateHashtagDto } from './dto/update-hashtag.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Hashtag } from './entities/hashtag.entity';
 
 @Injectable()
 export class HashtagsService {
-  create(createHashtagDto: CreateHashtagDto) {
-    return 'This action adds a new hashtag';
+  constructor(
+    @InjectRepository(Hashtag)
+    private hashtagRepository: Repository<Hashtag>,
+  ) {}
+
+  async findOrCreateHashtags(hashtags: string[]): Promise<Hashtag[]> {
+    const uniqueHashtags = [...new Set(hashtags)];
+    const hashtagEntities: Hashtag[] = [];
+
+    for (const tag of uniqueHashtags) {
+      const hashtagWithSymbol = tag.startsWith('#') ? tag : `#${tag}`;
+      let hashtag = await this.hashtagRepository.findOne({
+        where: { hashtag: hashtagWithSymbol },
+      });
+
+      if (!hashtag) {
+        hashtag = await this.hashtagRepository.save({
+          hashtag: hashtagWithSymbol,
+        });
+      }
+
+      hashtagEntities.push(hashtag);
+    }
+
+    return hashtagEntities;
   }
 
-  findAll() {
-    return `This action returns all hashtags`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} hashtag`;
-  }
-
-  update(id: number, updateHashtagDto: UpdateHashtagDto) {
-    return `This action updates a #${id} hashtag`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} hashtag`;
+  extractHashtags(text: string): string[] {
+    const hashtagRegex = /#\w+/g;
+    const matches = text.match(hashtagRegex);
+    return matches ? matches : [];
   }
 }

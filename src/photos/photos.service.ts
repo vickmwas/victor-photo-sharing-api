@@ -14,6 +14,7 @@ import { User } from 'src/users/entities/user.entity';
 import { Like } from 'src/likes/entities/like.entity';
 import { CreateCommentDto } from 'src/comments/dto/create-comment.dto';
 import { Comment } from 'src/comments/entities/comment.entity';
+import { HashtagsService } from 'src/hashtags/hashtags.service';
 
 @Injectable()
 export class PhotosService {
@@ -31,6 +32,8 @@ export class PhotosService {
 
     @InjectRepository(Comment)
     private commentsRepository: Repository<Comment>,
+
+    private hashtagsService: HashtagsService,
 
     private configService: ConfigService,
   ) {
@@ -73,9 +76,17 @@ export class PhotosService {
       throw new NotFoundException(`User with ID ${userId} not found`);
     }
 
+    // Extract hashtags from the caption
+    const hashtags = this.hashtagsService.extractHashtags(
+      createPhotoDto.caption,
+    );
+    const hashtagEntities =
+      await this.hashtagsService.findOrCreateHashtags(hashtags);
+
     const photo = this.photosRepository.create({
       ...createPhotoDto,
       user,
+      hashtags: hashtagEntities,
     });
     return this.photosRepository.save(photo);
   }
@@ -110,7 +121,18 @@ export class PhotosService {
     if (!photo) {
       throw new NotFoundException(`Photo with ID ${id} not found`);
     }
-    return this.photosRepository.save(photo);
+
+    if (updatePhotoDto.caption) {
+      const hashtags = this.hashtagsService.extractHashtags(
+        updatePhotoDto.caption,
+      );
+      photo.hashtags =
+        await this.hashtagsService.findOrCreateHashtags(hashtags);
+    }
+    return this.photosRepository.save({
+      ...photo,
+      ...updatePhotoDto,
+    });
   }
 
   async remove(id: string): Promise<void> {
