@@ -81,20 +81,25 @@ export class PhotosService {
   }
 
   async findAllByUser(userId: string): Promise<Photo[]> {
-    console.log('Testing Request: UserID');
-    console.log(userId);
-    return this.photosRepository.find({
+    const photos = await this.photosRepository.find({
       where: { user: { id: userId } },
-      relations: ['user'],
+      relations: ['user', 'likes', 'comments'],
     });
+
+    return this.loadCounts(photos);
   }
 
   async findOne(id: string): Promise<Photo> {
-    const photo = await this.photosRepository.findOne({ where: { id } });
+    const photo = await this.photosRepository.findOne({
+      where: { id },
+      relations: ['user', 'likes', 'comments'],
+    });
+
     if (!photo) {
       throw new NotFoundException(`Photo with ID ${id} not found`);
     }
-    return photo;
+
+    return (await this.loadCounts([photo]))[0];
   }
 
   async update(id: string, updatePhotoDto: UpdatePhotoDto): Promise<Photo> {
@@ -143,16 +148,18 @@ export class PhotosService {
 
     const [photos, totalItems] = await this.photosRepository.findAndCount({
       where: { user: { id: In(followingIds) } },
-      relations: ['user'],
+      relations: ['user', 'likes', 'comments'],
       skip: (page - 1) * limit,
       take: limit,
       order: { createdAt: 'DESC' },
     });
 
+    const photosWithCounts = await this.loadCounts(photos);
+
     const totalPages = Math.ceil(totalItems / limit);
 
     return {
-      photos,
+      photos: photosWithCounts,
       currentPage: page,
       totalPages,
       totalItems,
@@ -218,5 +225,17 @@ export class PhotosService {
       likesCount: photo.likes.length,
       commentsCount: photo.comments.length,
     };
+  }
+
+  private async loadCounts(photos: Photo[]): Promise<Photo[]> {
+    for (const photo of photos) {
+      const [likesCount, commentsCount] = await Promise.all([
+        this.likesRepository.count({ where: { photo: { id: photo.id } } }),
+        this.commentsRepository.count({ where: { photo: { id: photo.id } } }),
+      ]);
+      photo.likeCount = likesCount;
+      photo.commentCount = commentsCount;
+    }
+    return photos;
   }
 }

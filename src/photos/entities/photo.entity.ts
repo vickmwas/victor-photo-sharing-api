@@ -7,6 +7,7 @@ import {
   UpdateDateColumn,
   DeleteDateColumn,
   OneToMany,
+  RelationCount,
 } from 'typeorm';
 import { User } from '../../users/entities/user.entity';
 import { Like } from 'src/likes/entities/like.entity';
@@ -49,4 +50,7 @@ export class Photo {
 
   @OneToMany(() => Like, (like) => like.photo)
   likes: Like[];
+
+  likeCount?: number;
+  commentCount?: number;
 }

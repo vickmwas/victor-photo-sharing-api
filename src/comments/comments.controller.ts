@@ -1,7 +1,5 @@
 import {
   Controller,
-  Get,
-  Post,
   Body,
   Patch,
   Param,
@@ -10,12 +8,10 @@ import {
   Req,
 } from '@nestjs/common';
 import { CommentsService } from './comments.service';
-import { CreateCommentDto } from './dto/create-comment.dto';
 import { UpdateCommentDto } from './dto/update-comment.dto';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { ApiBearerAuth, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { RequestWithUser } from 'src/auth/interfaces/request-with-user.interface';
-import { CreateReplyDto } from './dto/create-reply-dto';
 
 @Controller('comments')
 export class CommentsController {
