@@ -10,6 +10,7 @@ import { LikesModule } from './likes/likes.module';
 import { CommentsModule } from './comments/comments.module';
 import { HashtagsModule } from './hashtags/hashtags.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { SearchModule } from './search/search.module';
 
 @Module({
   imports: [
@@ -28,7 +29,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
     PhotosModule,
     LikesModule,
     CommentsModule,
-    HashtagsModule, // Load TypeORM configuration
+    HashtagsModule,
+    SearchModule, // Load TypeORM configuration
   ],
   controllers: [AppController],
   providers: [AppService],
