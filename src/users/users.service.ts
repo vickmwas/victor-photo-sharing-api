@@ -4,12 +4,16 @@ import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
 import { UpdateUserDto } from './dto/update-user.dto';
 import * as bcrypt from 'bcrypt';
+import { NotificationType } from 'src/notifications/entities/notification.entity';
+import { NotificationsService } from 'src/notifications/notifications.service';
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
+
+    private notificationsService: NotificationsService,
   ) {}
 
   async create(userData: Partial<User>): Promise<User> {
@@ -103,11 +107,24 @@ export class UsersService {
       throw new NotFoundException('User not found');
     }
 
-    user.following.push(targetUser);
-    targetUser.followers.push(user);
+    await this.userRepository
+      .createQueryBuilder()
+      .relation(User, 'following')
+      .of(userId)
+      .add(targetUserId);
 
-    await this.userRepository.save(user);
-    await this.userRepository.save(targetUser);
+    // Create notification for followed user
+    await this.notificationsService.createNotification(
+      NotificationType.FOLLOW,
+      targetUserId,
+      userId,
+    );
+
+    // user.following.push(targetUser);
+    // targetUser.followers.push(user);
+
+    // await this.userRepository.save(user);
+    // await this.userRepository.save(targetUser);
   }
 
   async unfollowUser(userId: string, targetUserId: string): Promise<void> {

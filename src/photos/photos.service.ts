@@ -15,6 +15,8 @@ import { Like } from 'src/likes/entities/like.entity';
 import { CreateCommentDto } from 'src/comments/dto/create-comment.dto';
 import { Comment } from 'src/comments/entities/comment.entity';
 import { HashtagsService } from 'src/hashtags/hashtags.service';
+import { NotificationsService } from 'src/notifications/notifications.service';
+import { NotificationType } from 'src/notifications/entities/notification.entity';
 
 @Injectable()
 export class PhotosService {
@@ -32,6 +34,8 @@ export class PhotosService {
 
     @InjectRepository(Comment)
     private commentsRepository: Repository<Comment>,
+
+    private notificationsService: NotificationsService,
 
     private hashtagsService: HashtagsService,
 
@@ -194,6 +198,15 @@ export class PhotosService {
       where: { photo: { id: photoId }, user: { id: userId } },
     });
 
+    const photo = await this.photosRepository.findOne({
+      where: { id: photoId },
+      relations: ['user'],
+    });
+
+    if (!photo) {
+      throw new NotFoundException('Photo not found');
+    }
+
     if (existingLike) {
       throw new BadRequestException('Photo already liked');
     }
@@ -204,6 +217,16 @@ export class PhotosService {
     });
 
     await this.likesRepository.save(like);
+
+    // Create notification for photo owner
+    if (photo.user.id !== userId) {
+      await this.notificationsService.createNotification(
+        NotificationType.LIKE,
+        photo.user.id,
+        userId,
+        photoId,
+      );
+    }
   }
 
   async unlikePhoto(photoId: string, userId: string): Promise<void> {
@@ -223,13 +246,32 @@ export class PhotosService {
     userId: string,
     createCommentDto: CreateCommentDto,
   ): Promise<Comment> {
-    const comment = this.commentsRepository.create({
+    const photo = await this.photosRepository.findOne({
+      where: { id: photoId },
+      relations: ['user'],
+    });
+
+    if (!photo) {
+      throw new NotFoundException('Photo not found');
+    }
+
+    const comment = await this.commentsRepository.save({
       ...createCommentDto,
       photo: { id: photoId },
       user: { id: userId },
     });
 
-    return this.commentsRepository.save(comment);
+    if (photo.user.id !== userId) {
+      await this.notificationsService.createNotification(
+        NotificationType.COMMENT,
+        photo.user.id,
+        userId,
+        photoId,
+        comment.id,
+      );
+    }
+
+    return comment;
   }
 
   async getPhotoDetails(photoId: string): Promise<any> {

@@ -7,12 +7,15 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Comment } from './entities/comment.entity';
 import { UpdateCommentDto } from './dto/update-comment.dto';
+import { NotificationsService } from 'src/notifications/notifications.service';
 
 @Injectable()
 export class CommentsService {
   constructor(
     @InjectRepository(Comment)
     private commentsRepository: Repository<Comment>,
+
+    private notificationsService: NotificationsService,
   ) {}
 
   async update(
@@ -34,6 +37,7 @@ export class CommentsService {
     }
 
     await this.commentsRepository.update(id, updateCommentDto);
+
     return this.commentsRepository.findOne({ where: { id } });
   }
 

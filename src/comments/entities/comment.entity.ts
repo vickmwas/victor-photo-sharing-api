@@ -7,15 +7,11 @@ import {
   UpdateDateColumn,
   DeleteDateColumn,
   OneToMany,
-  Tree,
-  TreeParent,
-  TreeChildren,
 } from 'typeorm';
 import { Photo } from '../../photos/entities/photo.entity';
 import { User } from '../../users/entities/user.entity';
 
 @Entity('comments')
-@Tree('materialized-path')
 export class Comment {
   @PrimaryGeneratedColumn('uuid')
   id: string;

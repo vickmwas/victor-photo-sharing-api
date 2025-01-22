@@ -14,6 +14,7 @@ import { Exclude } from 'class-transformer';
 import { Photo } from '../../photos/entities/photo.entity';
 import { Comment } from '../../comments/entities/comment.entity';
 import { Like } from '../../likes/entities/like.entity';
+import { Notification } from 'src/notifications/entities/notification.entity';
 
 @Entity('users')
 export class User {
@@ -64,6 +65,12 @@ export class User {
 
   @OneToMany(() => Like, (like) => like.user)
   likes: Like[];
+
+  @OneToMany(() => Notification, (notification) => notification.recipient)
+  receivedNotifications: Notification[];
+
+  @OneToMany(() => Notification, (notification) => notification.triggeredBy)
+  triggeredNotifications: Notification[];
 
   followerCount?: number;
 
