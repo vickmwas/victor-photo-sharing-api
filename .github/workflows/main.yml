@@ -33,14 +33,7 @@ jobs:
         with:
           node-version: '18'
           cache: 'npm'
-
-      - name: Load environment variables
-        run: |
-          echo "Loading environment variables from .env.ci"
-          set -a
-          source .env.ci
-          set +a
-
+      
       - name: Install dependencies
         run: npm ci
 
