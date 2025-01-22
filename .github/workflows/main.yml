@@ -32,7 +32,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18'
-          cache: 'yarn'
+          cache: 'npm'
 
       - name: Load environment variables
         run: |
@@ -42,10 +42,10 @@ jobs:
           set +a
 
       - name: Install dependencies
-        run: yarn install
+        run: npm ci
 
       - name: Run tests
-        run: yarn test
+        run: npm test
         env:
           DB_HOST: ${{ secrets.DB_HOST }}
           DB_PORT: ${{ secrets.DB_PORT }}
@@ -55,7 +55,7 @@ jobs:
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
 
       - name: Run e2e tests
-        run: yarn test:e2e
+        run: npm run test:e2e
         env:
           DB_HOST: ${{ secrets.DB_HOST }}
           DB_PORT: ${{ secrets.DB_PORT }}
