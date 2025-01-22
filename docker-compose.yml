@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    env_file:
+      - .env
+    ports:
+      - "${PORT}:8000"
+    environment:
+      - PORT=${PORT}
+      - NODE_ENV=${NODE_ENV}
+      - DATABASE_HOST=postgres
+      - DATABASE_PORT=${DATABASE_PORT}
+      - DATABASE_USERNAME=${DATABASE_USERNAME}
+      - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+      - DATABASE_NAME=${DATABASE_NAME}
+      - JWT_SECRET=${JWT_SECRET}
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_REGION=${AWS_REGION}
+      - AWS_S3_PHOTOS_BUCKET_NAME=${AWS_S3_PHOTOS_BUCKET_NAME}
+      - AWS_S3_PROFILE_PHOTOS_BUCKET_NAME=${AWS_S3_PROFILE_PHOTOS_BUCKET_NAME}
+
+
+    depends_on:
+      - postgres
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    command: npm run start:dev
+
+  postgres:
+    image: postgres:15-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=${DATABASE_USERNAME}
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+      - POSTGRES_DB=${DATABASE_NAME}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./docker-pg-init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./init-pg-hba.sh:/docker-entrypoint-initdb.d/init-pg-hba.sh
+
+volumes:
+  postgres_data:
