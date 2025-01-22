@@ -14,9 +14,9 @@ jobs:
       postgres:
         image: postgres:15-alpine
         env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: photo_app_test
+          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
         ports:
           - 5432:5432
         options: >-
@@ -26,33 +26,40 @@ jobs:
           --health-retries 5
 
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'
-        cache: 'yarn'
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'yarn'
 
-    - name: Install dependencies
-      run: yarn install
+      - name: Load environment variables
+        run: |
+          echo "Loading environment variables from .env.ci"
+          set -a
+          source .env.ci
+          set +a
 
-    - name: Run tests
-      run: yarn test
-      env:
-        DB_HOST: localhost
-        DB_PORT: 5432
-        DB_USERNAME: postgres
-        DB_PASSWORD: postgres
-        DB_DATABASE: photo_app_test
-        JWT_SECRET: test_secret
+      - name: Install dependencies
+        run: yarn install
 
-    - name: Run e2e tests
-      run: yarn test:e2e
-      env:
-        DB_HOST: localhost
-        DB_PORT: 5432
-        DB_USERNAME: postgres
-        DB_PASSWORD: postgres
-        DB_DATABASE: photo_app_test
-        JWT_SECRET: test_secret
+      - name: Run tests
+        run: yarn test
+        env:
+          DB_HOST: ${{ secrets.DB_HOST }}
+          DB_PORT: ${{ secrets.DB_PORT }}
+          DB_USERNAME: ${{ secrets.DB_USERNAME }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          DB_DATABASE: ${{ secrets.DB_DATABASE }}
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
+
+      - name: Run e2e tests
+        run: yarn test:e2e
+        env:
+          DB_HOST: ${{ secrets.DB_HOST }}
+          DB_PORT: ${{ secrets.DB_PORT }}
+          DB_USERNAME: ${{ secrets.DB_USERNAME }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          DB_DATABASE: ${{ secrets.DB_DATABASE }}
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
