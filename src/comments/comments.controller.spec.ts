@@ -8,7 +8,6 @@ import { Repository } from 'typeorm';
 
 describe('CommentsController', () => {
   let controller: CommentsController;
-  let service: CommentsService;
   let mockCommentRepository: Partial<Repository<Comment>>;
   let mockNotificationsService: Partial<NotificationsService>;
 
@@ -48,7 +47,6 @@ describe('CommentsController', () => {
     }).compile();
 
     controller = module.get<CommentsController>(CommentsController);
-    service = module.get<CommentsService>(CommentsService);
   });
 
   it('should be defined', () => {
