@@ -1,0 +1,3762 @@
+{
+	"info": {
+		"_postman_id": "e126000c-745c-4190-9020-9545f1776923",
+		"name": "Incourage - Photo Sharing API",
+		"description": "REST API for the Photo Sharing App",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1583208"
+	},
+	"item": [
+		{
+			"name": "/",
+			"item": [
+				{
+					"name": "Health Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "12"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"c-Lve95gjOVATpfV8EL5X4nxwjKHE\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 23 Jan 2025 09:45:00 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "Hello World!"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "signup",
+					"item": [
+						{
+							"name": "Register a new user",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"\",\n  \"username\": \"\",\n  \"email\": \"\",\n  \"password\": \"\",\n  \"bio\": \"\",\n  \"profilePhotoUrl\": \"\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/signup",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"signup"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Register a new user",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"Victor M\",\n  \"username\": \"victor_m\",\n  \"email\": \"\",\n  \"password\": \"victor\",\n  \"bio\": \"Hello, World of Photo Sharing!\",\n  \"profilePhotoUrl\": \"https://i.pravatar.cc/300\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/auth/signup",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"auth",
+												"signup"
+											]
+										}
+									},
+									"status": "- Success ",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "470"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"1d6-M1mfsoPN9WmqTHP/KJZjH1n5fHA\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 23 Jan 2025 09:46:36 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"accessToken\": \"eyJhbGciOiJIUzIxxxxx\",\n    \"refreshToken\": \"eyJhbGciOiJIUxxxxx\"\n}"
+								},
+								{
+									"name": "400 - Invalid Email",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"\",\n  \"username\": \"\",\n  \"email\": \"\",\n  \"password\": \"\",\n  \"bio\": \"\",\n  \"profilePhotoUrl\": \"\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/auth/signup",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"auth",
+												"signup"
+											]
+										}
+									},
+									"status": "Bad Request - Missing Data",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "77"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"4d-3V3Uy1KR57m8txxwRQ1zEUNG0HY\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 23 Jan 2025 09:47:55 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": [\n        \"email must be an email\"\n    ],\n    \"error\": \"Bad Request\",\n    \"statusCode\": 400\n}"
+								},
+								{
+									"name": "409 Conflict - Dublicate Email/Username Error",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"\",\n  \"username\": \"\",\n  \"email\": \"\",\n  \"password\": \"\",\n  \"bio\": \"\",\n  \"profilePhotoUrl\": \"\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/auth/signup",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"auth",
+												"signup"
+											]
+										}
+									},
+									"status": "Conflict",
+									"code": 409,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "70"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"46-Fqi7MW8UTTNsiOC7lI+OJ4Fodz4\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 23 Jan 2025 09:53:55 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Email already in use\",\n    \"error\": \"Conflict\",\n    \"statusCode\": 409\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "login",
+					"item": [
+						{
+							"name": "Login user",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"username\": \"\",\n  \"password\": \"\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "201 - Login Successful",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"username\": \"\",\n  \"password\": \"\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/auth/login",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"auth",
+												"login"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "470"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"1d6-EUd+9akZdOR04F9pmP1YmRtVYhQ\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 23 Jan 2025 09:56:20 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"accessToken\": \"eyJhbGciOixxxxxxx\",\n    \"refreshToken\": \"eyJhbGciOiJIxxxxx\"\n}"
+								},
+								{
+									"name": "401 - Invalid Credentials",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"username\": \"\",\n  \"password\": \"false_password\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/auth/login",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"auth",
+												"login"
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "73"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"49-Fx+yDPXfDSYD3nxIxyU6P47CVX0\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 23 Jan 2025 09:59:15 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Invalid credentials\",\n    \"error\": \"Unauthorized\",\n    \"statusCode\": 401\n}"
+								},
+								{
+									"name": "400 - Bad Request - Missing Data",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"username\": \"\",\n  \"password\": \"\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/auth/login",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"auth",
+												"login"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "83"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"53-jJh9M8cVWSBN0ce8gxBY4KED5Sk\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 23 Jan 2025 09:59:46 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": [\n        \"username should not be empty\"\n    ],\n    \"error\": \"Bad Request\",\n    \"statusCode\": 400\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "logout",
+					"item": [
+						{
+							"name": "Logout user",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/auth/logout",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"logout"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "401 - No Token Supplied",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/auth/logout",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"auth",
+												"logout"
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "43"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"2b-dGnJzt6gv1nJjX6DJ9RztDWptng\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 23 Jan 2025 10:04:14 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Unauthorized\",\n    \"statusCode\": 401\n}"
+								},
+								{
+									"name": "User successfully logged out.",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/auth/logout",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"auth",
+												"logout"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "plain",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 23 Jan 2025 10:08:24 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										},
+										{
+											"key": "Content-Length",
+											"value": "0"
+										}
+									],
+									"cookie": [],
+									"body": null
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "profile",
+					"item": [
+						{
+							"name": "Fetch the authenticated user's profile, including uploaded photos, followers, and following count",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/users/profile",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										"profile"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "200 - Sample User Profile",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/users/profile",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"users",
+												"profile"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "1463"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"5b7-9OQyiUqveNAxFejW8H+42tnQ3Uo\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 23 Jan 2025 10:37:41 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": \"e3699c16-c719-4306-aa38-915934010a1c\",\n    \"name\": \"John Doe\",\n    \"username\": \"new_username\",\n    \"email\": \"john@example.com\",\n    \"password\": \"$2b$10$AP5VXjHTGp6aA7Zd4Wgj.eCe/nL8SEK6LSO9LVpViChv6zLsrWxpO\",\n    \"bio\": \"This is my new bio\",\n    \"profilePhotoUrl\": \"https://example.com/photo.jpg\",\n    \"createdAt\": \"2025-01-18T14:46:19.760Z\",\n    \"updatedAt\": \"2025-01-20T22:08:22.260Z\",\n    \"deletedAt\": null,\n    \"photos\": [\n        {\n            \"id\": \"003987cb-cc20-4537-a869-e69de0b0b5b8\",\n            \"photoUrl\": \"https://incourage-photos-feed.s3.amazonaws.com/1737401759709-Screenshot%202025-01-08%20234355.png\",\n            \"filename\": \"Screenshot 2025-01-08 234355.png\",\n            \"size\": 19904,\n            \"mimeType\": \"image/png\",\n            \"caption\": \"This is a photo caption\",\n            \"createdAt\": \"2025-01-20T19:37:36.223Z\",\n            \"updatedAt\": \"2025-01-20T19:37:36.223Z\",\n            \"deletedAt\": null\n        },\n        {\n            \"id\": \"025250d5-1e07-43f5-b779-c5d38e578325\",\n            \"photoUrl\": \"https://s3-url/photo.jpg\",\n            \"filename\": \"photo.jpg\",\n            \"size\": 1024,\n            \"mimeType\": \"image/jpeg\",\n            \"caption\": \"This is an updated photo caption. #woop\",\n            \"createdAt\": \"2025-01-20T19:44:09.511Z\",\n            \"updatedAt\": \"2025-01-21T03:30:35.686Z\",\n            \"deletedAt\": null\n        }\n    ],\n    \"followers\": [\n        {\n            \"id\": \"a2e1708e-c589-4074-a63d-79ea75ce0382\",\n            \"name\": \"Victor Mwangi\",\n            \"username\": \"vickmwas\",\n            \"email\": \"victorkibuthi@gmail.com\",\n            \"password\": \"$2b$10$a7GSo6SVSYs.0M29V.XKMOYJfLsrHrbPwbPkjhpiH4sTDyQQiWjZu\",\n            \"bio\": \"Hi, I am Victor\",\n            \"profilePhotoUrl\": \"https://i.pravatar.cc/300\",\n            \"createdAt\": \"2025-01-19T18:01:59.344Z\",\n            \"updatedAt\": \"2025-01-19T18:01:59.344Z\",\n            \"deletedAt\": null\n        }\n    ],\n    \"following\": [],\n    \"followerCount\": 1,\n    \"followingCount\": 0\n}"
+								}
+							]
+						},
+						{
+							"name": "Update the authenticated user's profile information",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"username\": \"victor_m\",\n  \"bio\": \"Test Bio Edit\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/users/profile",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										"profile"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "200 - Update the authenticated user's profile information",
+									"originalRequest": {
+										"method": "PATCH",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"username\": \"johndoe\",\n  \"bio\": \"Test Bio Edit\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/users/profile",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"users",
+												"profile"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "352"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"160-no9qdKuAL6HOe1DZhF5kztqsz90\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 23 Jan 2025 10:40:53 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": \"e3699c16-c719-4306-aa38-915934010a1c\",\n    \"name\": \"John Doe\",\n    \"username\": \"johndoe\",\n    \"email\": \"john@example.com\",\n    \"password\": \"$2b$10$AP5VXjHTGp6aA7Zd4Wgj.eCe/nL8SEK6LSO9LVpViChv6zLsrWxpO\",\n    \"bio\": \"Test Bio Edit\",\n    \"profilePhotoUrl\": \"https://example.com/photo.jpg\",\n    \"createdAt\": \"2025-01-18T14:46:19.760Z\",\n    \"updatedAt\": \"2025-01-23T10:40:53.118Z\",\n    \"deletedAt\": null\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "{id}",
+					"item": [
+						{
+							"name": "follow",
+							"item": [
+								{
+									"name": "Follow a user",
+									"request": {
+										"method": "PATCH",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/users/:id/follow",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"users",
+												":id",
+												"follow"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "a2e1708e-c589-4074-a63d-79ea75ce0382",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "200 - User Followed Successfully",
+											"originalRequest": {
+												"method": "PATCH",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/users/:id/follow",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"users",
+														":id",
+														"follow"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "a2e1708e-c589-4074-a63d-79ea75ce0382",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "X-Powered-By",
+													"value": "Express"
+												},
+												{
+													"key": "Vary",
+													"value": "Origin"
+												},
+												{
+													"key": "Access-Control-Allow-Credentials",
+													"value": "true"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Content-Length",
+													"value": "40"
+												},
+												{
+													"key": "ETag",
+													"value": "W/\"28-PY0/VYT5B7nrX7Y9Iha3Ligs+G4\""
+												},
+												{
+													"key": "Date",
+													"value": "Thu, 23 Jan 2025 11:06:01 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "Keep-Alive",
+													"value": "timeout=5"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"User followed successfully\"\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "unfollow",
+							"item": [
+								{
+									"name": "Unfollow a user",
+									"request": {
+										"method": "PATCH",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/users/:id/unfollow",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"users",
+												":id",
+												"unfollow"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "a2e1708e-c589-4074-a63d-79ea75ce0382",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "User not found",
+											"originalRequest": {
+												"method": "PATCH",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "Bearer <token>",
+														"description": "Added as a part of security scheme: bearer"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/users/:id/unfollow",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"users",
+														":id",
+														"unfollow"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "a2e1708e-c589-4074-a63d-79ea75ce0383"
+														}
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "X-Powered-By",
+													"value": "Express"
+												},
+												{
+													"key": "Vary",
+													"value": "Origin"
+												},
+												{
+													"key": "Access-Control-Allow-Credentials",
+													"value": "true"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Content-Length",
+													"value": "65"
+												},
+												{
+													"key": "ETag",
+													"value": "W/\"41-7dsO5LJbH+bIfRGvh2fjufiOW7s\""
+												},
+												{
+													"key": "Date",
+													"value": "Thu, 23 Jan 2025 11:18:36 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "Keep-Alive",
+													"value": "timeout=5"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"User not found\",\n    \"error\": \"Not Found\",\n    \"statusCode\": 404\n}"
+										},
+										{
+											"name": "User unfollowed successfully",
+											"originalRequest": {
+												"method": "PATCH",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/users/:id/unfollow",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"users",
+														":id",
+														"unfollow"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "a2e1708e-c589-4074-a63d-79ea75ce0382",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "X-Powered-By",
+													"value": "Express"
+												},
+												{
+													"key": "Vary",
+													"value": "Origin"
+												},
+												{
+													"key": "Access-Control-Allow-Credentials",
+													"value": "true"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Content-Length",
+													"value": "42"
+												},
+												{
+													"key": "ETag",
+													"value": "W/\"2a-D8CVz1MD0/ttYNn/Dg1H9vC+rGU\""
+												},
+												{
+													"key": "Date",
+													"value": "Thu, 23 Jan 2025 11:14:42 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "Keep-Alive",
+													"value": "timeout=5"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"User unfollowed successfully\"\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Users Controller find One",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{bearerToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/users/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "<string>",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Untitled Response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer <token>",
+												"description": "Added as a part of security scheme: bearer"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/users/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"users",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "Users Controller update",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{bearerToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"username\": \"<string>\",\n  \"bio\": \"<string>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/users/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "<string>",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Untitled Response",
+									"originalRequest": {
+										"method": "PATCH",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer <token>",
+												"description": "Added as a part of security scheme: bearer"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"username\": \"<string>\",\n  \"bio\": \"<string>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/users/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"users",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "Users Controller remove",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{bearerToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/users/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "<string>",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Untitled Response",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer <token>",
+												"description": "Added as a part of security scheme: bearer"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/users/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"users",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "/users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/users",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Find all users",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/users",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1085"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"43d-pJpa/kxAbESBJax3U0EHosZP8kE\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 23 Jan 2025 11:19:38 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"a2e1708e-c589-4074-a63d-79ea75ce0382\",\n        \"name\": \"Victor Mwangi\",\n        \"username\": \"vickmwas\",\n        \"email\": \"victorkibuthi@gmail.com\",\n        \"password\": \"$2b$10$a7GSo6SVSYs.0M29V.XKMOYJfLsrHrbPwbPkjhpiH4sTDyQQiWjZu\",\n        \"bio\": \"Hi, I am Victor\",\n        \"profilePhotoUrl\": \"https://i.pravatar.cc/300\",\n        \"createdAt\": \"2025-01-19T18:01:59.344Z\",\n        \"updatedAt\": \"2025-01-19T18:01:59.344Z\",\n        \"deletedAt\": null\n    },\n    {\n        \"id\": \"3f4c9e9c-475b-412c-84e4-030dd503918d\",\n        \"name\": \"Victor M\",\n        \"username\": \"victor_m\",\n        \"email\": \"victor@email.com\",\n        \"password\": \"$2b$10$TResRcDEkqNoWaItEnn1wupbH75vFUm36YinqcHYqU0bi7fWpCiWe\",\n        \"bio\": \"Hello, World of Photo Sharing!\",\n        \"profilePhotoUrl\": \"https://i.pravatar.cc/300\",\n        \"createdAt\": \"2025-01-23T09:46:35.985Z\",\n        \"updatedAt\": \"2025-01-23T09:46:35.985Z\",\n        \"deletedAt\": null\n    },\n    {\n        \"id\": \"e3699c16-c719-4306-aa38-915934010a1c\",\n        \"name\": \"John Doe\",\n        \"username\": \"johndoe\",\n        \"email\": \"john@example.com\",\n        \"password\": \"$2b$10$AP5VXjHTGp6aA7Zd4Wgj.eCe/nL8SEK6LSO9LVpViChv6zLsrWxpO\",\n        \"bio\": \"Test Bio Edit\",\n        \"profilePhotoUrl\": \"https://example.com/photo.jpg\",\n        \"createdAt\": \"2025-01-18T14:46:19.760Z\",\n        \"updatedAt\": \"2025-01-23T10:40:53.118Z\",\n        \"deletedAt\": null\n    }\n]"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "notifications",
+			"item": [
+				{
+					"name": "{id}",
+					"item": [
+						{
+							"name": "read",
+							"item": [
+								{
+									"name": "Mark notification as read",
+									"request": {
+										"method": "PATCH",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/notifications/:id/read",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"notifications",
+												":id",
+												"read"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "<string>",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "200 - Failed to read a notification",
+											"originalRequest": {
+												"method": "PATCH",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "Bearer <token>",
+														"description": "Added as a part of security scheme: bearer"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/notifications/:id/read",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"notifications",
+														":id",
+														"read"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "200 - Successful Notification Read",
+											"originalRequest": {
+												"method": "PATCH",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/notifications/:id/read",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"notifications",
+														":id",
+														"read"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "bc15031e-5e74-454d-a669-9e2e8a842918",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "X-Powered-By",
+													"value": "Express"
+												},
+												{
+													"key": "Vary",
+													"value": "Origin"
+												},
+												{
+													"key": "Access-Control-Allow-Credentials",
+													"value": "true"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Content-Length",
+													"value": "42"
+												},
+												{
+													"key": "ETag",
+													"value": "W/\"2a-mp76xueJwuBg6SC3F/3HJjTMrec\""
+												},
+												{
+													"key": "Date",
+													"value": "Thu, 23 Jan 2025 11:24:34 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "Keep-Alive",
+													"value": "timeout=5"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"generatedMaps\": [],\n    \"raw\": [],\n    \"affected\": 1\n}"
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Get user notifications",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/notifications?page=1&limit=10",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"notifications"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"description": "(Required) "
+								},
+								{
+									"key": "limit",
+									"value": "10",
+									"description": "(Required) "
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 - Get Paginated List of Notifications",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/notifications?page=1&limit=10",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"notifications"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1",
+											"description": "(Required) "
+										},
+										{
+											"key": "limit",
+											"value": "10",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1207"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4b7-3ZiBYockAnhP1jGSDEuJ6hoHXp4\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 23 Jan 2025 11:22:34 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"notifications\": [\n        {\n            \"id\": \"af21d1f4-6aca-4d49-89b4-553dceb81890\",\n            \"type\": \"follow\",\n            \"isRead\": false,\n            \"createdAt\": \"2025-01-23T11:06:01.945Z\",\n            \"updatedAt\": \"2025-01-23T11:06:01.945Z\",\n            \"triggeredBy\": {\n                \"id\": \"e3699c16-c719-4306-aa38-915934010a1c\",\n                \"name\": \"John Doe\",\n                \"username\": \"johndoe\",\n                \"email\": \"john@example.com\",\n                \"password\": \"$2b$10$AP5VXjHTGp6aA7Zd4Wgj.eCe/nL8SEK6LSO9LVpViChv6zLsrWxpO\",\n                \"bio\": \"Test Bio Edit\",\n                \"profilePhotoUrl\": \"https://example.com/photo.jpg\",\n                \"createdAt\": \"2025-01-18T14:46:19.760Z\",\n                \"updatedAt\": \"2025-01-23T10:40:53.118Z\",\n                \"deletedAt\": null\n            },\n            \"photo\": null,\n            \"comment\": null\n        },\n        {\n            \"id\": \"bc15031e-5e74-454d-a669-9e2e8a842918\",\n            \"type\": \"follow\",\n            \"isRead\": false,\n            \"createdAt\": \"2025-01-22T16:24:54.129Z\",\n            \"updatedAt\": \"2025-01-22T16:24:54.129Z\",\n            \"triggeredBy\": {\n                \"id\": \"a2e1708e-c589-4074-a63d-79ea75ce0382\",\n                \"name\": \"Victor Mwangi\",\n                \"username\": \"vickmwas\",\n                \"email\": \"victorkibuthi@gmail.com\",\n                \"password\": \"$2b$10$a7GSo6SVSYs.0M29V.XKMOYJfLsrHrbPwbPkjhpiH4sTDyQQiWjZu\",\n                \"bio\": \"Hi, I am Victor\",\n                \"profilePhotoUrl\": \"https://i.pravatar.cc/300\",\n                \"createdAt\": \"2025-01-19T18:01:59.344Z\",\n                \"updatedAt\": \"2025-01-19T18:01:59.344Z\",\n                \"deletedAt\": null\n            },\n            \"photo\": null,\n            \"comment\": null\n        }\n    ],\n    \"meta\": {\n        \"currentPage\": \"1\",\n        \"itemsPerPage\": \"10\",\n        \"totalItems\": 2,\n        \"totalPages\": 1\n    }\n}"
+						},
+						{
+							"name": "200 - Empty List of Notifications",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/notifications?page=1&limit=10",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"notifications"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1",
+											"description": "(Required) "
+										},
+										{
+											"key": "limit",
+											"value": "10",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "97"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"61-TWGSV6iEAivRmRWBhIatAHOTdmQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 23 Jan 2025 11:26:56 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"notifications\": [],\n    \"meta\": {\n        \"currentPage\": \"1\",\n        \"itemsPerPage\": \"10\",\n        \"totalItems\": 0,\n        \"totalPages\": 0\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "photos",
+			"item": [
+				{
+					"name": "upload",
+					"item": [
+						{
+							"name": "Upload a photo",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "multipart/form-data"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"description": "(Required) The photo file",
+											"type": "file",
+											"src": "/C:/Users/Victor/Pictures/Screenshots/Screenshot 2025-01-22 122956.png"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/photos/upload",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"photos",
+										"upload"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "201 - Photo Successfully Uploaded",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "multipart/form-data"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "file",
+													"description": "(Required) The photo file",
+													"type": "file",
+													"src": "/C:/Users/Victor/Pictures/Screenshots/Screenshot 2025-01-22 122956.png"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/photos/upload",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"photos",
+												"upload"
+											]
+										}
+									},
+									"status": "Forbidden",
+									"code": 403,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "144"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"90-LJV37v2/vdSGZN13hSLAM1RcS0M\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 23 Jan 2025 11:35:25 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"photoUrl\": \"https://incourage-photos-feed.s3.amazonaws.com/1737413981622-WIN_20230127_11_14_05_Pro.jpg\",\n  \"filename\": \"WIN_20230127_11_14_05_Pro.jpg\",\n  \"size\": 105312,\n  \"mimeType\": \"image/jpeg\",\n  \"caption\": \"This is a photo caption\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "feed",
+					"item": [
+						{
+							"name": "Fetch the user's feed, showing photos uploaded by themselves and users they follow",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/photos/feed?page=1&limit=10",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"photos",
+										"feed"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1",
+											"description": "(Required) "
+										},
+										{
+											"key": "limit",
+											"value": "10",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "200 - Fetch the user's feed",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/photos/feed?page=1&limit=10",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"photos",
+												"feed"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "1",
+													"description": "(Required) "
+												},
+												{
+													"key": "limit",
+													"value": "10",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "2593"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"a21-QzUcKHB4cLSSg319QUNnEHt7CuU\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 23 Jan 2025 12:04:26 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"photos\": [\n        {\n            \"id\": \"73f22bb3-da8f-404f-9083-1d0127a368ae\",\n            \"photoUrl\": \"https://s3-url/photo.jpg\",\n            \"filename\": \"photo.jpg\",\n            \"size\": 1024,\n            \"mimeType\": \"image/jpeg\",\n            \"caption\": \"This is a photo caption. #helloworld\",\n            \"createdAt\": \"2025-01-23T11:42:05.827Z\",\n            \"updatedAt\": \"2025-01-23T11:42:05.827Z\",\n            \"deletedAt\": null,\n            \"user\": {\n                \"id\": \"e3699c16-c719-4306-aa38-915934010a1c\",\n                \"name\": \"John Doe\",\n                \"username\": \"johndoe\",\n                \"email\": \"john@example.com\",\n                \"password\": \"$2b$10$AP5VXjHTGp6aA7Zd4Wgj.eCe/nL8SEK6LSO9LVpViChv6zLsrWxpO\",\n                \"bio\": \"Test Bio Edit\",\n                \"profilePhotoUrl\": \"https://example.com/photo.jpg\",\n                \"createdAt\": \"2025-01-18T14:46:19.760Z\",\n                \"updatedAt\": \"2025-01-23T10:40:53.118Z\",\n                \"deletedAt\": null\n            },\n            \"likes\": [\n                {\n                    \"photoId\": \"73f22bb3-da8f-404f-9083-1d0127a368ae\",\n                    \"userId\": \"a2e1708e-c589-4074-a63d-79ea75ce0382\",\n                    \"createdAt\": \"2025-01-21T00:40:51.539Z\",\n                    \"updatedAt\": \"2025-01-21T00:40:51.539Z\"\n                }\n            ],\n            \"comments\": [],\n            \"likeCount\": 1,\n            \"commentCount\": 0\n        },\n        {\n            \"id\": \"dd16311e-5f7d-4fca-81e0-0829e37c36bd\",\n            \"photoUrl\": \"https://s3-url/photo.jpg\",\n            \"filename\": \"photo.jpg\",\n            \"size\": 1024,\n            \"mimeType\": \"image/jpeg\",\n            \"caption\": \"Edited caption. #yeah!\",\n            \"createdAt\": \"2025-01-23T11:41:12.227Z\",\n            \"updatedAt\": \"2025-01-23T11:59:47.104Z\",\n            \"deletedAt\": null,\n            \"user\": {\n                \"id\": \"e3699c16-c719-4306-aa38-915934010a1c\",\n                \"name\": \"John Doe\",\n                \"username\": \"johndoe\",\n                \"email\": \"john@example.com\",\n                \"password\": \"$2b$10$AP5VXjHTGp6aA7Zd4Wgj.eCe/nL8SEK6LSO9LVpViChv6zLsrWxpO\",\n                \"bio\": \"Test Bio Edit\",\n                \"profilePhotoUrl\": \"https://example.com/photo.jpg\",\n                \"createdAt\": \"2025-01-18T14:46:19.760Z\",\n                \"updatedAt\": \"2025-01-23T10:40:53.118Z\",\n                \"deletedAt\": null\n            },\n            \"likes\": [],\n            \"comments\": [\n                {\n                    \"id\": \"298d80e6-489b-4895-8978-362718e3eac4\",\n                    \"comment\": \"Nice photo!\",\n                    \"createdAt\": \"2025-01-23T11:55:58.424Z\",\n                    \"updatedAt\": \"2025-01-23T11:55:58.424Z\",\n                    \"deletedAt\": null\n                }\n            ],\n            \"likeCount\": 0,\n            \"commentCount\": 1\n        },\n        {\n            \"id\": \"003987cb-cc20-4537-a869-e69de0b0b5b8\",\n            \"photoUrl\": \"https://incourage-photos-feed.s3.amazonaws.com/1737401759709-Screenshot%202025-01-08%20234355.png\",\n            \"filename\": \"Screenshot 2025-01-08 234355.png\",\n            \"size\": 19904,\n            \"mimeType\": \"image/png\",\n            \"caption\": \"This is a photo caption\",\n            \"createdAt\": \"2025-01-20T19:37:36.223Z\",\n            \"updatedAt\": \"2025-01-20T19:37:36.223Z\",\n            \"deletedAt\": null,\n            \"user\": {\n                \"id\": \"e3699c16-c719-4306-aa38-915934010a1c\",\n                \"name\": \"John Doe\",\n                \"username\": \"johndoe\",\n                \"email\": \"john@example.com\",\n                \"password\": \"$2b$10$AP5VXjHTGp6aA7Zd4Wgj.eCe/nL8SEK6LSO9LVpViChv6zLsrWxpO\",\n                \"bio\": \"Test Bio Edit\",\n                \"profilePhotoUrl\": \"https://example.com/photo.jpg\",\n                \"createdAt\": \"2025-01-18T14:46:19.760Z\",\n                \"updatedAt\": \"2025-01-23T10:40:53.118Z\",\n                \"deletedAt\": null\n            },\n            \"likes\": [],\n            \"comments\": [],\n            \"likeCount\": 0,\n            \"commentCount\": 0\n        }\n    ],\n    \"currentPage\": \"1\",\n    \"totalPages\": 1,\n    \"totalItems\": 3,\n    \"perPage\": \"10\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "{id}",
+					"item": [
+						{
+							"name": "like",
+							"item": [
+								{
+									"name": "Like Photo",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/photos/:id/like",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"photos",
+												":id",
+												"like"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "73f22bb3-da8f-404f-9083-1d0127a368ae",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "201 - Successfully Like Photo",
+											"originalRequest": {
+												"method": "POST",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/photos/:id/like",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"photos",
+														":id",
+														"like"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "73f22bb3-da8f-404f-9083-1d0127a368ae",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "Created",
+											"code": 201,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "X-Powered-By",
+													"value": "Express"
+												},
+												{
+													"key": "Vary",
+													"value": "Origin"
+												},
+												{
+													"key": "Access-Control-Allow-Credentials",
+													"value": "true"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Content-Length",
+													"value": "38"
+												},
+												{
+													"key": "ETag",
+													"value": "W/\"26-9+wDznj2/DscYL0PWUZBW3RfLdQ\""
+												},
+												{
+													"key": "Date",
+													"value": "Thu, 23 Jan 2025 11:49:21 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "Keep-Alive",
+													"value": "timeout=5"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"Photo liked successfully\"\n}"
+										},
+										{
+											"name": "404 - Photo Not Found",
+											"originalRequest": {
+												"method": "POST",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/photos/:id/like",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"photos",
+														":id",
+														"like"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "73f22bb3-da8f-404f-9083-1d0127a368af",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "X-Powered-By",
+													"value": "Express"
+												},
+												{
+													"key": "Vary",
+													"value": "Origin"
+												},
+												{
+													"key": "Access-Control-Allow-Credentials",
+													"value": "true"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Content-Length",
+													"value": "66"
+												},
+												{
+													"key": "ETag",
+													"value": "W/\"42-z39ndwLS+/K8kZw61RCB3pzb0Zw\""
+												},
+												{
+													"key": "Date",
+													"value": "Thu, 23 Jan 2025 11:49:52 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "Keep-Alive",
+													"value": "timeout=5"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"Photo not found\",\n    \"error\": \"Not Found\",\n    \"statusCode\": 404\n}"
+										}
+									]
+								},
+								{
+									"name": "Unlike Photo",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/photos/:id/like",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"photos",
+												":id",
+												"like"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "<string>",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "200 - Unlike Photo Success",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/photos/:id/like",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"photos",
+														":id",
+														"like"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "73f22bb3-da8f-404f-9083-1d0127a368ae",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "X-Powered-By",
+													"value": "Express"
+												},
+												{
+													"key": "Vary",
+													"value": "Origin"
+												},
+												{
+													"key": "Access-Control-Allow-Credentials",
+													"value": "true"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Content-Length",
+													"value": "40"
+												},
+												{
+													"key": "ETag",
+													"value": "W/\"28-cHKTVt8b81Lj+Z20myHWMkmFoJE\""
+												},
+												{
+													"key": "Date",
+													"value": "Thu, 23 Jan 2025 11:53:31 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "Keep-Alive",
+													"value": "timeout=5"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"Photo unliked successfully\"\n}"
+										},
+										{
+											"name": "404 - Photo to unlike not found",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/photos/:id/like",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"photos",
+														":id",
+														"like"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "73f22bb3-da8f-404f-9083-1d0127a368af",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "X-Powered-By",
+													"value": "Express"
+												},
+												{
+													"key": "Vary",
+													"value": "Origin"
+												},
+												{
+													"key": "Access-Control-Allow-Credentials",
+													"value": "true"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Content-Length",
+													"value": "65"
+												},
+												{
+													"key": "ETag",
+													"value": "W/\"41-A9Kq8vFQblRmIN3g5H+EeEQ8tKs\""
+												},
+												{
+													"key": "Date",
+													"value": "Thu, 23 Jan 2025 11:54:03 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "Keep-Alive",
+													"value": "timeout=5"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"Like not found\",\n    \"error\": \"Not Found\",\n    \"statusCode\": 404\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "comments",
+							"item": [
+								{
+									"name": "Add Comment",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"comment\": \"Nice photo!\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/photos/:id/comments",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"photos",
+												":id",
+												"comments"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "dd16311e-5f7d-4fca-81e0-0829e37c36bd",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "201 - Add Comment Sucessfully",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"comment\": \"Nice photo!\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/photos/:id/comments",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"photos",
+														":id",
+														"comments"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "dd16311e-5f7d-4fca-81e0-0829e37c36bd",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "Created",
+											"code": 201,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "X-Powered-By",
+													"value": "Express"
+												},
+												{
+													"key": "Vary",
+													"value": "Origin"
+												},
+												{
+													"key": "Access-Control-Allow-Credentials",
+													"value": "true"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Content-Length",
+													"value": "271"
+												},
+												{
+													"key": "ETag",
+													"value": "W/\"10f-LjYJUtxfSqqA0LDhCdmkHoNbZBI\""
+												},
+												{
+													"key": "Date",
+													"value": "Thu, 23 Jan 2025 11:55:58 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "Keep-Alive",
+													"value": "timeout=5"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"comment\": \"Nice photo!\",\n    \"photo\": {\n        \"id\": \"dd16311e-5f7d-4fca-81e0-0829e37c36bd\"\n    },\n    \"user\": {\n        \"id\": \"e3699c16-c719-4306-aa38-915934010a1c\"\n    },\n    \"id\": \"298d80e6-489b-4895-8978-362718e3eac4\",\n    \"createdAt\": \"2025-01-23T11:55:58.424Z\",\n    \"updatedAt\": \"2025-01-23T11:55:58.424Z\",\n    \"deletedAt\": null\n}"
+										},
+										{
+											"name": "404 - Photo Not Found",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"comment\": \"Nice photo!\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/photos/:id/comments",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"photos",
+														":id",
+														"comments"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "ed16311e-5f7d-4fca-81e0-0829e37c36bd",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "X-Powered-By",
+													"value": "Express"
+												},
+												{
+													"key": "Vary",
+													"value": "Origin"
+												},
+												{
+													"key": "Access-Control-Allow-Credentials",
+													"value": "true"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Content-Length",
+													"value": "66"
+												},
+												{
+													"key": "ETag",
+													"value": "W/\"42-z39ndwLS+/K8kZw61RCB3pzb0Zw\""
+												},
+												{
+													"key": "Date",
+													"value": "Thu, 23 Jan 2025 11:56:39 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "Keep-Alive",
+													"value": "timeout=5"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"Photo not found\",\n    \"error\": \"Not Found\",\n    \"statusCode\": 404\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "details",
+							"item": [
+								{
+									"name": "Photos Controller get Photo Details",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/photos/:id/details",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"photos",
+												":id",
+												"details"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "dd16311e-5f7d-4fca-81e0-0829e37c36bd",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "200 - Get Detailed Photo Details",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/photos/:id/details",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"photos",
+														":id",
+														"details"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "dd16311e-5f7d-4fca-81e0-0829e37c36bd",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "X-Powered-By",
+													"value": "Express"
+												},
+												{
+													"key": "Vary",
+													"value": "Origin"
+												},
+												{
+													"key": "Access-Control-Allow-Credentials",
+													"value": "true"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Content-Length",
+													"value": "496"
+												},
+												{
+													"key": "ETag",
+													"value": "W/\"1f0-NIe3u9Q4drx4qO/klLvsWs/UMAg\""
+												},
+												{
+													"key": "Date",
+													"value": "Thu, 23 Jan 2025 11:57:46 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "Keep-Alive",
+													"value": "timeout=5"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"id\": \"dd16311e-5f7d-4fca-81e0-0829e37c36bd\",\n    \"photoUrl\": \"https://s3-url/photo.jpg\",\n    \"filename\": \"photo.jpg\",\n    \"size\": 1024,\n    \"mimeType\": \"image/jpeg\",\n    \"caption\": \"This is a photo caption.\",\n    \"createdAt\": \"2025-01-23T11:41:12.227Z\",\n    \"updatedAt\": \"2025-01-23T11:41:12.227Z\",\n    \"deletedAt\": null,\n    \"comments\": [\n        {\n            \"id\": \"298d80e6-489b-4895-8978-362718e3eac4\",\n            \"comment\": \"Nice photo!\",\n            \"createdAt\": \"2025-01-23T11:55:58.424Z\",\n            \"updatedAt\": \"2025-01-23T11:55:58.424Z\",\n            \"deletedAt\": null\n        }\n    ],\n    \"likes\": [],\n    \"likesCount\": 0,\n    \"commentsCount\": 1\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Update a photo by ID",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"caption\": \"Edited caption. #yeah!\"\r\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/photos/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"photos",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "ed16311e-5f7d-4fca-81e0-0829e37c36bd",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "200 - Edited Photo Successfully",
+									"originalRequest": {
+										"method": "PATCH",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"caption\": \"Edited caption. #yeah!\"\r\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/photos/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"photos",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "dd16311e-5f7d-4fca-81e0-0829e37c36bd",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "444"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"1bc-8wiCR9QtHUVgOUL0bgwybVQRop8\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 23 Jan 2025 11:59:47 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": \"dd16311e-5f7d-4fca-81e0-0829e37c36bd\",\n    \"photoUrl\": \"https://s3-url/photo.jpg\",\n    \"filename\": \"photo.jpg\",\n    \"size\": 1024,\n    \"mimeType\": \"image/jpeg\",\n    \"caption\": \"Edited caption. #yeah!\",\n    \"createdAt\": \"2025-01-23T11:41:12.227Z\",\n    \"updatedAt\": \"2025-01-23T11:59:47.104Z\",\n    \"deletedAt\": null,\n    \"hashtags\": [\n        {\n            \"hashtag\": \"#yeah\",\n            \"id\": \"4a96debf-c6c4-4012-8858-ce34230e547b\",\n            \"createdAt\": \"2025-01-23T11:59:47.081Z\",\n            \"updatedAt\": \"2025-01-23T11:59:47.081Z\",\n            \"deletedAt\": null\n        }\n    ]\n}"
+								},
+								{
+									"name": "400 - Photo to edit not found",
+									"originalRequest": {
+										"method": "PATCH",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"caption\": \"Edited caption. #yeah!\"\r\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/photos/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"photos",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "ed16311e-5f7d-4fca-81e0-0829e37c36bd",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "111"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"6f-UpCXKQjgonW6R4Ksf7jOewTDDfE\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 23 Jan 2025 12:00:41 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Photo with ID ed16311e-5f7d-4fca-81e0-0829e37c36bd not found\",\n    \"error\": \"Not Found\",\n    \"statusCode\": 404\n}"
+								}
+							]
+						},
+						{
+							"name": "Delete a photo by ID",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/photos/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"photos",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "025250d5-1e07-43f5-b779-c5d38e578325",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "200 - Photo Deleted Successfully",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/photos/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"photos",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "025250d5-1e07-43f5-b779-c5d38e578325",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "plain",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 23 Jan 2025 12:02:31 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										},
+										{
+											"key": "Content-Length",
+											"value": "0"
+										}
+									],
+									"cookie": [],
+									"body": null
+								},
+								{
+									"name": "404 - Photo not found",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/photos/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"photos",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "125250d5-1e07-43f5-b779-c5d38e578325",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "111"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"6f-IFnbjnmO3fJzixaMFHK3Ifm3di0\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 23 Jan 2025 12:03:32 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Photo with ID 125250d5-1e07-43f5-b779-c5d38e578325 not found\",\n    \"error\": \"Not Found\",\n    \"statusCode\": 404\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Create a photo entry",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"photoUrl\": \"https://s3-url/photo.jpg\",\n  \"filename\": \"photo.jpg\",\n  \"size\": 1024,\n  \"mimeType\": \"image/jpeg\",\n  \"caption\": \"This is a photo caption.\"\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/photos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"photos"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "201 - Successfully Create a photo entry Without Hashtag in caption",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"photoUrl\": \"https://s3-url/photo.jpg\",\n  \"filename\": \"photo.jpg\",\n  \"size\": 1024,\n  \"mimeType\": \"image/jpeg\",\n  \"caption\": \"This is a photo caption.\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/photos",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"photos"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "648"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"288-/iW3F8qtwXWEjpxqOl3f6EZEIOg\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 23 Jan 2025 11:41:12 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"photoUrl\": \"https://s3-url/photo.jpg\",\n    \"filename\": \"photo.jpg\",\n    \"size\": 1024,\n    \"mimeType\": \"image/jpeg\",\n    \"caption\": \"This is a photo caption.\",\n    \"user\": {\n        \"id\": \"e3699c16-c719-4306-aa38-915934010a1c\",\n        \"name\": \"John Doe\",\n        \"username\": \"johndoe\",\n        \"email\": \"john@example.com\",\n        \"password\": \"$2b$10$AP5VXjHTGp6aA7Zd4Wgj.eCe/nL8SEK6LSO9LVpViChv6zLsrWxpO\",\n        \"bio\": \"Test Bio Edit\",\n        \"profilePhotoUrl\": \"https://example.com/photo.jpg\",\n        \"createdAt\": \"2025-01-18T14:46:19.760Z\",\n        \"updatedAt\": \"2025-01-23T10:40:53.118Z\",\n        \"deletedAt\": null\n    },\n    \"hashtags\": [],\n    \"id\": \"dd16311e-5f7d-4fca-81e0-0829e37c36bd\",\n    \"createdAt\": \"2025-01-23T11:41:12.227Z\",\n    \"updatedAt\": \"2025-01-23T11:41:12.227Z\",\n    \"deletedAt\": null\n}"
+						},
+						{
+							"name": "201 - Photo entry with hashtag in caption.",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"photoUrl\": \"https://s3-url/photo.jpg\",\n  \"filename\": \"photo.jpg\",\n  \"size\": 1024,\n  \"mimeType\": \"image/jpeg\",\n  \"caption\": \"This is a photo caption. #helloworld\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/photos",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"photos"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "824"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"338-11hHm/W3tP5F4D3bbMHT3i+lYQU\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 23 Jan 2025 11:42:05 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"photoUrl\": \"https://s3-url/photo.jpg\",\n    \"filename\": \"photo.jpg\",\n    \"size\": 1024,\n    \"mimeType\": \"image/jpeg\",\n    \"caption\": \"This is a photo caption. #helloworld\",\n    \"user\": {\n        \"id\": \"e3699c16-c719-4306-aa38-915934010a1c\",\n        \"name\": \"John Doe\",\n        \"username\": \"johndoe\",\n        \"email\": \"john@example.com\",\n        \"password\": \"$2b$10$AP5VXjHTGp6aA7Zd4Wgj.eCe/nL8SEK6LSO9LVpViChv6zLsrWxpO\",\n        \"bio\": \"Test Bio Edit\",\n        \"profilePhotoUrl\": \"https://example.com/photo.jpg\",\n        \"createdAt\": \"2025-01-18T14:46:19.760Z\",\n        \"updatedAt\": \"2025-01-23T10:40:53.118Z\",\n        \"deletedAt\": null\n    },\n    \"hashtags\": [\n        {\n            \"id\": \"077bd26f-fcf2-4382-a27c-7939d51ebbc4\",\n            \"hashtag\": \"#helloworld\",\n            \"createdAt\": \"2025-01-23T11:42:05.814Z\",\n            \"updatedAt\": \"2025-01-23T11:42:05.814Z\",\n            \"deletedAt\": null\n        }\n    ],\n    \"id\": \"73f22bb3-da8f-404f-9083-1d0127a368ae\",\n    \"createdAt\": \"2025-01-23T11:42:05.827Z\",\n    \"updatedAt\": \"2025-01-23T11:42:05.827Z\",\n    \"deletedAt\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "List uploaded photos for the authenticated user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/photos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"photos"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Retrieve list of all uploaded photos (user posts)",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/photos",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"photos"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2887"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b47-Hq3fjziGnCsm5WcapSI4+bQU4Jk\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 23 Jan 2025 11:42:56 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"003987cb-cc20-4537-a869-e69de0b0b5b8\",\n        \"photoUrl\": \"https://incourage-photos-feed.s3.amazonaws.com/1737401759709-Screenshot%202025-01-08%20234355.png\",\n        \"filename\": \"Screenshot 2025-01-08 234355.png\",\n        \"size\": 19904,\n        \"mimeType\": \"image/png\",\n        \"caption\": \"This is a photo caption\",\n        \"createdAt\": \"2025-01-20T19:37:36.223Z\",\n        \"updatedAt\": \"2025-01-20T19:37:36.223Z\",\n        \"deletedAt\": null,\n        \"user\": {\n            \"id\": \"e3699c16-c719-4306-aa38-915934010a1c\",\n            \"name\": \"John Doe\",\n            \"username\": \"johndoe\",\n            \"email\": \"john@example.com\",\n            \"password\": \"$2b$10$AP5VXjHTGp6aA7Zd4Wgj.eCe/nL8SEK6LSO9LVpViChv6zLsrWxpO\",\n            \"bio\": \"Test Bio Edit\",\n            \"profilePhotoUrl\": \"https://example.com/photo.jpg\",\n            \"createdAt\": \"2025-01-18T14:46:19.760Z\",\n            \"updatedAt\": \"2025-01-23T10:40:53.118Z\",\n            \"deletedAt\": null\n        },\n        \"likes\": [],\n        \"comments\": [],\n        \"likeCount\": 0,\n        \"commentCount\": 0\n    },\n    {\n        \"id\": \"025250d5-1e07-43f5-b779-c5d38e578325\",\n        \"photoUrl\": \"https://s3-url/photo.jpg\",\n        \"filename\": \"photo.jpg\",\n        \"size\": 1024,\n        \"mimeType\": \"image/jpeg\",\n        \"caption\": \"This is an updated photo caption. #woop\",\n        \"createdAt\": \"2025-01-20T19:44:09.511Z\",\n        \"updatedAt\": \"2025-01-21T03:30:35.686Z\",\n        \"deletedAt\": null,\n        \"user\": {\n            \"id\": \"e3699c16-c719-4306-aa38-915934010a1c\",\n            \"name\": \"John Doe\",\n            \"username\": \"johndoe\",\n            \"email\": \"john@example.com\",\n            \"password\": \"$2b$10$AP5VXjHTGp6aA7Zd4Wgj.eCe/nL8SEK6LSO9LVpViChv6zLsrWxpO\",\n            \"bio\": \"Test Bio Edit\",\n            \"profilePhotoUrl\": \"https://example.com/photo.jpg\",\n            \"createdAt\": \"2025-01-18T14:46:19.760Z\",\n            \"updatedAt\": \"2025-01-23T10:40:53.118Z\",\n            \"deletedAt\": null\n        },\n        \"likes\": [],\n        \"comments\": [],\n        \"likeCount\": 0,\n        \"commentCount\": 0\n    },\n    {\n        \"id\": \"dd16311e-5f7d-4fca-81e0-0829e37c36bd\",\n        \"photoUrl\": \"https://s3-url/photo.jpg\",\n        \"filename\": \"photo.jpg\",\n        \"size\": 1024,\n        \"mimeType\": \"image/jpeg\",\n        \"caption\": \"This is a photo caption.\",\n        \"createdAt\": \"2025-01-23T11:41:12.227Z\",\n        \"updatedAt\": \"2025-01-23T11:41:12.227Z\",\n        \"deletedAt\": null,\n        \"user\": {\n            \"id\": \"e3699c16-c719-4306-aa38-915934010a1c\",\n            \"name\": \"John Doe\",\n            \"username\": \"johndoe\",\n            \"email\": \"john@example.com\",\n            \"password\": \"$2b$10$AP5VXjHTGp6aA7Zd4Wgj.eCe/nL8SEK6LSO9LVpViChv6zLsrWxpO\",\n            \"bio\": \"Test Bio Edit\",\n            \"profilePhotoUrl\": \"https://example.com/photo.jpg\",\n            \"createdAt\": \"2025-01-18T14:46:19.760Z\",\n            \"updatedAt\": \"2025-01-23T10:40:53.118Z\",\n            \"deletedAt\": null\n        },\n        \"likes\": [],\n        \"comments\": [],\n        \"likeCount\": 0,\n        \"commentCount\": 0\n    },\n    {\n        \"id\": \"73f22bb3-da8f-404f-9083-1d0127a368ae\",\n        \"photoUrl\": \"https://s3-url/photo.jpg\",\n        \"filename\": \"photo.jpg\",\n        \"size\": 1024,\n        \"mimeType\": \"image/jpeg\",\n        \"caption\": \"This is a photo caption. #helloworld\",\n        \"createdAt\": \"2025-01-23T11:42:05.827Z\",\n        \"updatedAt\": \"2025-01-23T11:42:05.827Z\",\n        \"deletedAt\": null,\n        \"user\": {\n            \"id\": \"e3699c16-c719-4306-aa38-915934010a1c\",\n            \"name\": \"John Doe\",\n            \"username\": \"johndoe\",\n            \"email\": \"john@example.com\",\n            \"password\": \"$2b$10$AP5VXjHTGp6aA7Zd4Wgj.eCe/nL8SEK6LSO9LVpViChv6zLsrWxpO\",\n            \"bio\": \"Test Bio Edit\",\n            \"profilePhotoUrl\": \"https://example.com/photo.jpg\",\n            \"createdAt\": \"2025-01-18T14:46:19.760Z\",\n            \"updatedAt\": \"2025-01-23T10:40:53.118Z\",\n            \"deletedAt\": null\n        },\n        \"likes\": [],\n        \"comments\": [],\n        \"likeCount\": 0,\n        \"commentCount\": 0\n    }\n]"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "search",
+			"item": [
+				{
+					"name": "Search by hashtag or username",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/search?query=<string>&page=1&limit=10",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"search"
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": "<string>",
+									"description": "(Required) Search term (hashtag or username)"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Missing Hashtag query",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/search?query=%23test&page=1&limit=10",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"search"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "#test",
+											"description": "(Required) Search term (hashtag or username)"
+										},
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "127"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"7f-LEo94N89E9kszRqQkQyzqgDETnQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 23 Jan 2025 12:07:53 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [],\n    \"meta\": {\n        \"searchType\": \"hashtag\",\n        \"query\": \"#test\",\n        \"currentPage\": \"1\",\n        \"itemsPerPage\": \"10\",\n        \"totalItems\": 0,\n        \"totalPages\": 0\n    }\n}"
+						},
+						{
+							"name": "200 - Successful Search by hashtag",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/search?query=%23helloworld&page=1&limit=10",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"search"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "#helloworld",
+											"description": "(Required) Search term (hashtag or username)"
+										},
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1189"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4a5-Lf9x07adfp5H+EuOF/DvyvCBleg\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 23 Jan 2025 12:09:05 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": \"73f22bb3-da8f-404f-9083-1d0127a368ae\",\n            \"photoUrl\": \"https://s3-url/photo.jpg\",\n            \"filename\": \"photo.jpg\",\n            \"size\": 1024,\n            \"mimeType\": \"image/jpeg\",\n            \"caption\": \"This is a photo caption. #helloworld\",\n            \"createdAt\": \"2025-01-23T11:42:05.827Z\",\n            \"updatedAt\": \"2025-01-23T11:42:05.827Z\",\n            \"deletedAt\": null,\n            \"hashtags\": [\n                {\n                    \"id\": \"077bd26f-fcf2-4382-a27c-7939d51ebbc4\",\n                    \"hashtag\": \"#helloworld\",\n                    \"createdAt\": \"2025-01-23T11:42:05.814Z\",\n                    \"updatedAt\": \"2025-01-23T11:42:05.814Z\",\n                    \"deletedAt\": null\n                }\n            ],\n            \"user\": {\n                \"id\": \"e3699c16-c719-4306-aa38-915934010a1c\",\n                \"name\": \"John Doe\",\n                \"username\": \"johndoe\",\n                \"email\": \"john@example.com\",\n                \"password\": \"$2b$10$AP5VXjHTGp6aA7Zd4Wgj.eCe/nL8SEK6LSO9LVpViChv6zLsrWxpO\",\n                \"bio\": \"Test Bio Edit\",\n                \"profilePhotoUrl\": \"https://example.com/photo.jpg\",\n                \"createdAt\": \"2025-01-18T14:46:19.760Z\",\n                \"updatedAt\": \"2025-01-23T10:40:53.118Z\",\n                \"deletedAt\": null\n            },\n            \"likes\": [\n                {\n                    \"photoId\": \"73f22bb3-da8f-404f-9083-1d0127a368ae\",\n                    \"userId\": \"a2e1708e-c589-4074-a63d-79ea75ce0382\",\n                    \"createdAt\": \"2025-01-21T00:40:51.539Z\",\n                    \"updatedAt\": \"2025-01-21T00:40:51.539Z\"\n                }\n            ],\n            \"comments\": [],\n            \"likeCount\": 1,\n            \"commentCount\": 0\n        }\n    ],\n    \"meta\": {\n        \"searchType\": \"hashtag\",\n        \"query\": \"#helloworld\",\n        \"currentPage\": \"1\",\n        \"itemsPerPage\": \"10\",\n        \"totalItems\": 1,\n        \"totalPages\": 1\n    }\n}"
+						},
+						{
+							"name": "200 - Successful Search by username",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/search?query=vickmwas&page=1&limit=10",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"search"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "vickmwas",
+											"description": "(Required) Search term (hashtag or username)"
+										},
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1769"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"6e9-sWC3lnY/9kz5FvtgTA9hdDauTdw\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 23 Jan 2025 12:09:53 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": \"8df6660a-3c0c-4364-970a-d1f5d5ee52e0\",\n            \"photoUrl\": \"https://incourage-photos-feed.s3.amazonaws.com/1737413981622-WIN_20230127_11_14_05_Pro.jpg\",\n            \"filename\": \"WIN_20230127_11_14_05_Pro.jpg\",\n            \"size\": 105312,\n            \"mimeType\": \"image/jpeg\",\n            \"caption\": \"This is a photo caption\",\n            \"createdAt\": \"2025-01-20T23:00:11.457Z\",\n            \"updatedAt\": \"2025-01-20T23:00:11.457Z\",\n            \"deletedAt\": null,\n            \"user\": {\n                \"id\": \"a2e1708e-c589-4074-a63d-79ea75ce0382\",\n                \"name\": \"Victor Mwangi\",\n                \"username\": \"vickmwas\",\n                \"email\": \"victorkibuthi@gmail.com\",\n                \"password\": \"$2b$10$a7GSo6SVSYs.0M29V.XKMOYJfLsrHrbPwbPkjhpiH4sTDyQQiWjZu\",\n                \"bio\": \"Hi, I am Victor\",\n                \"profilePhotoUrl\": \"https://i.pravatar.cc/300\",\n                \"createdAt\": \"2025-01-19T18:01:59.344Z\",\n                \"updatedAt\": \"2025-01-19T18:01:59.344Z\",\n                \"deletedAt\": null\n            },\n            \"likes\": [],\n            \"comments\": [\n                {\n                    \"id\": \"82267803-c1e2-4afb-8e66-744f3d306873\",\n                    \"comment\": \"Nice edited pic!\",\n                    \"createdAt\": \"2025-01-21T01:21:09.823Z\",\n                    \"updatedAt\": \"2025-01-21T02:19:20.922Z\",\n                    \"deletedAt\": null\n                },\n                {\n                    \"id\": \"4f1e6eb5-6b04-497d-bd87-135876d4f395\",\n                    \"comment\": \"Thanks!\",\n                    \"createdAt\": \"2025-01-21T02:26:14.701Z\",\n                    \"updatedAt\": \"2025-01-21T02:26:14.701Z\",\n                    \"deletedAt\": null\n                },\n                {\n                    \"id\": \"765616f1-9b58-4279-8b2a-207191c67cdc\",\n                    \"comment\": \"You're welcome\",\n                    \"createdAt\": \"2025-01-21T02:33:01.518Z\",\n                    \"updatedAt\": \"2025-01-21T02:33:01.518Z\",\n                    \"deletedAt\": null\n                },\n                {\n                    \"id\": \"b5ab15b8-eba3-480d-9eda-d9038d4d2f12\",\n                    \"comment\": \"Testing a notification\",\n                    \"createdAt\": \"2025-01-22T15:58:49.025Z\",\n                    \"updatedAt\": \"2025-01-22T15:58:49.025Z\",\n                    \"deletedAt\": null\n                },\n                {\n                    \"id\": \"2e7523a9-4f1c-4e4e-b192-0863817733b6\",\n                    \"comment\": \"Testing a notification\",\n                    \"createdAt\": \"2025-01-22T16:23:49.235Z\",\n                    \"updatedAt\": \"2025-01-22T16:23:49.235Z\",\n                    \"deletedAt\": null\n                }\n            ],\n            \"likeCount\": 0,\n            \"commentCount\": 5\n        }\n    ],\n    \"meta\": {\n        \"searchType\": \"username\",\n        \"query\": \"vickmwas\",\n        \"currentPage\": \"1\",\n        \"itemsPerPage\": \"10\",\n        \"totalItems\": 1,\n        \"totalPages\": 1\n    }\n}"
+						},
+						{
+							"name": "Missing Username query",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/search?query=test&page=1&limit=10",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"search"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "test",
+											"description": "(Required) Search term (hashtag or username)"
+										},
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "127"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"7f-Gn7DA5OlqPyS1Gsdy3uU8NbyEWo\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 23 Jan 2025 12:10:39 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [],\n    \"meta\": {\n        \"searchType\": \"username\",\n        \"query\": \"test\",\n        \"currentPage\": \"1\",\n        \"itemsPerPage\": \"10\",\n        \"totalItems\": 0,\n        \"totalPages\": 0\n    }\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{access_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8000"
+		},
+		{
+			"key": "access_token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlMzY5OWMxNi1jNzE5LTQzMDYtYWEzOC05MTU5MzQwMTBhMWMiLCJ1c2VybmFtZSI6ImpvaG5kb2UiLCJpYXQiOjE3Mzc0MDk3MDQsImV4cCI6MTczODAxNDUwNH0.6h2ASDR0f-2anue-H8TszDXjX12vTJH_UMHuuhltjOk",
+			"type": "string"
+		}
+	]
+}

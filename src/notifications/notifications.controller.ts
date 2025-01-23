@@ -17,7 +17,7 @@ import { NotificationsService } from './notifications.service';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { RequestWithUser } from '../auth/interfaces/request-with-user.interface';
 
-@ApiTags('notifications')
+@ApiTags('Notifications')
 @Controller('notifications')
 @UseGuards(JwtAuthGuard)
 @ApiBearerAuth()
@@ -25,7 +25,7 @@ export class NotificationsController {
   constructor(private readonly notificationsService: NotificationsService) {}
 
   @Get()
-  @ApiOperation({ summary: 'Get user notifications' })
+  @ApiOperation({ summary: 'Get user notifications, in a paginated list' })
   @ApiResponse({ status: 200, description: 'Returns list of notifications' })
   async getUserNotifications(
     @Req() req: RequestWithUser,
