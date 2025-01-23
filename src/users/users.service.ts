@@ -4,8 +4,8 @@ import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
 import { UpdateUserDto } from './dto/update-user.dto';
 import * as bcrypt from 'bcrypt';
-import { NotificationType } from 'src/notifications/entities/notification.entity';
-import { NotificationsService } from 'src/notifications/notifications.service';
+import { NotificationType } from '../notifications/entities/notification.entity';
+import { NotificationsService } from '../notifications/notifications.service';
 
 @Injectable()
 export class UsersService {

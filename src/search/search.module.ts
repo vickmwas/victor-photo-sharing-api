@@ -10,5 +10,6 @@ import { Hashtag } from '../hashtags/entities/hashtag.entity';
   imports: [TypeOrmModule.forFeature([Photo, User, Hashtag])],
   controllers: [SearchController],
   providers: [SearchService],
+  exports: [SearchService],
 })
 export class SearchModule {}

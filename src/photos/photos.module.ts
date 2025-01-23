@@ -4,12 +4,12 @@ import { PhotosController } from './photos.controller';
 import { Photo } from './entities/photo.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
-import { User } from 'src/users/entities/user.entity';
-import { Like } from 'src/likes/entities/like.entity';
-import { Comment } from 'src/comments/entities/comment.entity';
-import { Hashtag } from 'src/hashtags/entities/hashtag.entity';
-import { HashtagsModule } from 'src/hashtags/hashtags.module';
-import { NotificationsModule } from 'src/notifications/notifications.module';
+import { User } from '../users/entities/user.entity';
+import { Like } from '../likes/entities/like.entity';
+import { Comment } from '../comments/entities/comment.entity';
+import { Hashtag } from '../hashtags/entities/hashtag.entity';
+import { HashtagsModule } from '../hashtags/hashtags.module';
+import { NotificationsModule } from '../notifications/notifications.module';
 
 @Module({
   imports: [
