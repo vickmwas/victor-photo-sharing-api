@@ -28,4 +28,7 @@ environment_defaults:
     DATABASE_PASSWORD: ${DATABASE_PASSWORD}
     DATABASE_NAME: ${DATABASE_NAME}
     JWT_SECRET: ${JWT_SECRET}
+    S3_BUCKET: ${S3_BUCKET}
+    S3_KEY: ${S3_KEY}
+    AWS_REGION: 'us-east-1'
     NODE_ENV: ${NODE_ENV}
