@@ -32,5 +32,6 @@ jobs:
           AWS_REGION: 'us-east-1'
         run: |
           zip -r deploy.zip .
+          aws s3 cp deploy.zip s3://$S3_BUCKET/deploy.zip
           aws elasticbeanstalk create-application-version --application-name photo-sharing-api --version-label $GITHUB_SHA --source-bundle S3Bucket=$S3_BUCKET,S3Key=deploy.zip
           aws elasticbeanstalk update-environment --application-name photo-sharing-api --environment-name photo-sharing-api-env --version-label $GITHUB_SHA
