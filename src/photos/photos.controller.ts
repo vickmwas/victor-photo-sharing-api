@@ -139,6 +139,9 @@ export class PhotosController {
 
   @Post(':id/like')
   @UseGuards(JwtAuthGuard)
+  @ApiOperation({
+    summary: "Like a user's post",
+  })
   async likePhoto(@Param('id') id: string, @Req() req: RequestWithUser) {
     await this.photosService.likePhoto(id, req.user.sub);
     return { message: 'Photo liked successfully' };
@@ -146,6 +149,9 @@ export class PhotosController {
 
   @Delete(':id/like')
   @UseGuards(JwtAuthGuard)
+  @ApiOperation({
+    summary: "Remove a Like a user's post",
+  })
   async unlikePhoto(@Param('id') id: string, @Req() req: RequestWithUser) {
     await this.photosService.unlikePhoto(id, req.user.sub);
     return { message: 'Photo unliked successfully' };
@@ -153,6 +159,9 @@ export class PhotosController {
 
   @Post(':id/comments')
   @UseGuards(JwtAuthGuard)
+  @ApiOperation({
+    summary: "Add a comment on a user's post",
+  })
   async addComment(
     @Param('id') id: string,
     @Body() createCommentDto: CreateCommentDto,
@@ -163,6 +172,10 @@ export class PhotosController {
 
   @Get(':id/details')
   @UseGuards(JwtAuthGuard)
+  @ApiOperation({
+    summary:
+      "Get more descriptive info on a user's post, including comments, likes and user details",
+  })
   async getPhotoDetails(@Param('id') id: string) {
     return this.photosService.getPhotoDetails(id);
   }

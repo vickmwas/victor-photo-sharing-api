@@ -21,6 +21,9 @@ export class UsersController {
 
   @Get()
   @ApiBearerAuth()
+  @ApiOperation({
+    summary: 'Fetches All Users in the System',
+  })
   findAll() {
     return this.usersService.findAll();
   }
@@ -41,6 +44,9 @@ export class UsersController {
 
   @Get(':id')
   @ApiBearerAuth()
+  @ApiOperation({
+    summary: 'Fetches A single user using their UserID',
+  })
   findOne(@Param('id') id: string) {
     return this.usersService.findUserProfile(id);
   }
@@ -91,14 +97,11 @@ export class UsersController {
     return this.usersService.updateProfile(userId, updateUserDto);
   }
 
-  @Patch(':id')
-  @ApiBearerAuth()
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.usersService.update(id, updateUserDto);
-  }
-
   @Delete(':id')
   @ApiBearerAuth()
+  @ApiOperation({
+    summary: 'Deletes A User From the Database',
+  })
   remove(@Param('id') id: string) {
     return this.usersService.softDelete(id);
   }

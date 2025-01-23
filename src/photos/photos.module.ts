@@ -5,11 +5,11 @@ import { Photo } from './entities/photo.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { User } from '../users/entities/user.entity';
-import { Like } from '../likes/entities/like.entity';
 import { Comment } from '../comments/entities/comment.entity';
 import { Hashtag } from '../hashtags/entities/hashtag.entity';
 import { HashtagsModule } from '../hashtags/hashtags.module';
 import { NotificationsModule } from '../notifications/notifications.module';
+import { Like } from 'src/likes/entities/like.entity';
 
 @Module({
   imports: [
