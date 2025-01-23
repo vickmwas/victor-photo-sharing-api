@@ -11,6 +11,9 @@ export const getTypeOrmConfig = (
   password: configService.get<string>('DATABASE_PASSWORD'),
   database: configService.get<string>('DATABASE_NAME'),
   entities: [__dirname + '/../**/*.entity{.ts,.js}'],
+  ssl: configService.get<boolean>('DATABASE_SSL')
+    ? { rejectUnauthorized: false }
+    : false,
   synchronize: true, // Set to false in production
   // dropSchema: true,
   logging: true,
