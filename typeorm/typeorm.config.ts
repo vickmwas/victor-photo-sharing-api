@@ -14,7 +14,7 @@ export const getTypeOrmConfig = (
   ssl: configService.get<boolean>('DATABASE_SSL')
     ? { rejectUnauthorized: false }
     : false,
-  synchronize: true, // Set to false in production
+  synchronize: false, // Set to false in production
   // dropSchema: true,
-  logging: true,
+  logging: false,
 });
