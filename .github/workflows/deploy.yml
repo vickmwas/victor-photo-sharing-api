@@ -11,18 +11,26 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: '22'
+          cache: 'npm'
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Build the application
         run: npm run build
+
+      - name: Prepare deployment package
+        run: |
+          mkdir -p deployment
+          cp -R dist node_modules package.json package-lock.json deployment/
+          cd deployment
+          zip -r ../deploy.zip .
 
       - name: Deploy to Elastic Beanstalk
         env:
@@ -31,7 +39,6 @@ jobs:
           S3_BUCKET: ${{ secrets.S3_BUCKET }}
           AWS_REGION: 'us-east-1'
         run: |
-          zip -r deploy.zip .
           aws s3 cp deploy.zip s3://$S3_BUCKET/deploy.zip
           aws elasticbeanstalk create-application-version --application-name photo-sharing-api-v2 --version-label $GITHUB_SHA --source-bundle S3Bucket=$S3_BUCKET,S3Key=deploy.zip
           aws elasticbeanstalk update-environment --application-name photo-sharing-api-v2 --environment-name photo-sharing-api-v2-env --version-label $GITHUB_SHA
