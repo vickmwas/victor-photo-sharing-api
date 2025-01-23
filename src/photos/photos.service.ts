@@ -16,7 +16,7 @@ import { Comment } from '../comments/entities/comment.entity';
 import { HashtagsService } from '../hashtags/hashtags.service';
 import { NotificationsService } from '../notifications/notifications.service';
 import { NotificationType } from '../notifications/entities/notification.entity';
-import { Like } from 'src/likes/entities/like.entity';
+import { Like } from '../likes/entities/like.entity';
 
 @Injectable()
 export class PhotosService {
