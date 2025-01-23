@@ -2,9 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Notification, NotificationType } from './entities/notification.entity';
-import { User } from '../users/entities/user.entity';
-import { Photo } from '../photos/entities/photo.entity';
-import { Comment } from '../comments/entities/comment.entity';
 
 @Injectable()
 export class NotificationsService {
@@ -18,14 +15,17 @@ export class NotificationsService {
     page: number = 1,
     limit: number = 10,
   ) {
-    const [notifications, total] =
-      await this.notificationsRepository.findAndCount({
-        where: { recipient: { id: userId } },
-        relations: ['triggeredBy', 'photo', 'comment'],
-        order: { createdAt: 'DESC' },
-        skip: (page - 1) * limit,
-        take: limit,
-      });
+    const queryBuilder = this.notificationsRepository
+      .createQueryBuilder('notification')
+      .leftJoinAndSelect('notification.triggeredBy', 'triggeredBy')
+      .leftJoinAndSelect('notification.photo', 'photo')
+      .leftJoinAndSelect('notification.comment', 'comment')
+      .where('notification.recipient.id = :userId', { userId })
+      .orderBy('notification.createdAt', 'DESC')
+      .skip((page - 1) * limit)
+      .take(limit);
+
+    const [notifications, total] = await queryBuilder.getManyAndCount();
 
     return {
       notifications,

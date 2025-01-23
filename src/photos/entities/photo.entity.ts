@@ -7,14 +7,13 @@ import {
   UpdateDateColumn,
   DeleteDateColumn,
   OneToMany,
-  RelationCount,
   ManyToMany,
   JoinTable,
 } from 'typeorm';
 import { User } from '../../users/entities/user.entity';
-import { Like } from 'src/likes/entities/like.entity';
-import { Comment } from 'src/comments/entities/comment.entity';
-import { Hashtag } from 'src/hashtags/entities/hashtag.entity';
+import { Like } from '../../likes/entities/like.entity';
+import { Comment } from '../../comments/entities/comment.entity';
+import { Hashtag } from '../../hashtags/entities/hashtag.entity';
 
 @Entity('photos')
 export class Photo {

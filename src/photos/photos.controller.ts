@@ -23,9 +23,9 @@ import {
   ApiOperation,
   ApiResponse,
 } from '@nestjs/swagger';
-import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
-import { RequestWithUser } from 'src/auth/interfaces/request-with-user.interface';
-import { CreateCommentDto } from 'src/comments/dto/create-comment.dto';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { RequestWithUser } from '../auth/interfaces/request-with-user.interface';
+import { CreateCommentDto } from '../comments/dto/create-comment.dto';
 
 @Controller('photos')
 @UseGuards(JwtAuthGuard)
