@@ -30,5 +30,5 @@ environment_defaults:
     JWT_SECRET: ${JWT_SECRET}
     S3_BUCKET: ${S3_BUCKET}
     S3_KEY: ${S3_KEY}
-    AWS_REGION: 'us-east-1'
+    AWS_REGION: ${AWS_REGION}
     NODE_ENV: ${NODE_ENV}
