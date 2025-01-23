@@ -1,0 +1,31 @@
+global:
+  application_name: photo-sharing-api
+  branch: main
+  default_platform: Node.js 20 running on 64bit Amazon Linux 2023
+  default_region: us-east-1
+  include_git_submodules: true
+  instance_profile: null
+  platform_name: null
+  platform_version: null
+  profile: null
+  repository: origin
+  sc: git
+  workspace_type: Application
+
+environment_defaults:
+  environment_name: photo-sharing-api-env
+  solution_stack: "64bit Amazon Linux 2 v3.3.6 running Node.js 14"
+  instance_type: t2.micro
+  instance_profile: aws-elasticbeanstalk-ec2-role
+  service_role: aws-elasticbeanstalk-service-role
+  scaling:
+    min_instances: 1
+    max_instances: 4
+  env:
+    DATABASE_HOST: ${DATABASE_HOST}
+    DATABASE_PORT: ${DATABASE_PORT}
+    DATABASE_USERNAME: ${DATABASE_USERNAME}
+    DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+    DATABASE_NAME: ${DATABASE_NAME}
+    JWT_SECRET: ${JWT_SECRET}
+    NODE_ENV: ${NODE_ENV}
