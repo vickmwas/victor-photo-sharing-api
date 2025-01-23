@@ -9,9 +9,9 @@ import {
 } from '@nestjs/common';
 import { CommentsService } from './comments.service';
 import { UpdateCommentDto } from './dto/update-comment.dto';
-import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { ApiBearerAuth, ApiOperation, ApiResponse } from '@nestjs/swagger';
-import { RequestWithUser } from 'src/auth/interfaces/request-with-user.interface';
+import { RequestWithUser } from '../auth/interfaces/request-with-user.interface';
 
 @Controller('comments')
 export class CommentsController {

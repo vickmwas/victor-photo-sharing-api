@@ -10,11 +10,10 @@ import {
   Req,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { ApiBearerAuth, ApiOperation, ApiResponse } from '@nestjs/swagger';
-import { RequestWithUser } from 'src/auth/interfaces/request-with-user.interface';
+import { RequestWithUser } from '../auth/interfaces/request-with-user.interface';
 
 @Controller('users')
 export class UsersController {

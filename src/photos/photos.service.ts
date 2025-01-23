@@ -10,13 +10,13 @@ import { ConfigService } from '@nestjs/config';
 import { In, Repository } from 'typeorm';
 import { Photo } from './entities/photo.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { User } from 'src/users/entities/user.entity';
-import { Like } from 'src/likes/entities/like.entity';
-import { CreateCommentDto } from 'src/comments/dto/create-comment.dto';
-import { Comment } from 'src/comments/entities/comment.entity';
-import { HashtagsService } from 'src/hashtags/hashtags.service';
-import { NotificationsService } from 'src/notifications/notifications.service';
-import { NotificationType } from 'src/notifications/entities/notification.entity';
+import { User } from '../users/entities/user.entity';
+import { Like } from '../likes/entities/like.entity';
+import { CreateCommentDto } from '../comments/dto/create-comment.dto';
+import { Comment } from '../comments/entities/comment.entity';
+import { HashtagsService } from '../hashtags/hashtags.service';
+import { NotificationsService } from '../notifications/notifications.service';
+import { NotificationType } from '../notifications/entities/notification.entity';
 
 @Injectable()
 export class PhotosService {
